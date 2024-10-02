@@ -1,0 +1,52 @@
+---
+import Header from '@components/HeaderComp.astro';
+
+interface Props {
+	description: string;
+	title: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<Header />
+		<slot />
+	</body>
+</html>
+<style is:global>
+	@font-face {
+		font-family: "Space Grotesk";
+		src: url('/fonts/SpaceGrotesk-VariableFont_wght.ttf') format('ttf');
+		font-weight: 100 900;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Trois Mille';
+		src: url('fonts/Trois Mille TRIAL Bold 15.woff2') format('woff2');
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Trois Mille';
+		src: url('fonts/Trois Mille TRIAL Black 15.woff2') format('woff2');
+		font-weight: 900;
+		font-style: normal;
+		font-display: swap;
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background: #FFF;
+	}
+</style>

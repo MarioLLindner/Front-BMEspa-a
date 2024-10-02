@@ -1,0 +1,45 @@
+---
+const { image, title } = Astro.props
+---
+
+<h2 class="section-title mb-6">
+    <img 
+    class={`w-screen h-auto ${Astro.props.class}`}
+    src={`/titles/${image}.png`} 
+    alt={title}>
+</h2>
+
+<style>
+    @keyframes slide-in {
+        100% {
+            translate: 0;
+        }
+    }
+
+    .section-title {
+        translate: 0 200px;
+    }
+
+    .section-title.slide-in {
+        animation: slide-in 1s cubic-bezier(0.61, 0.03, 0.08, 0.99) both;
+    }
+</style>
+
+<script>
+
+    const $titles = document.querySelectorAll(".section-title");
+
+    if($titles.length) {
+        $titles.forEach($title => {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $title.classList.add("slide-in")
+                        observer.unobserve($title)
+                    } 
+                })
+            })
+            observer.observe($title)
+        })
+    }
+</script>

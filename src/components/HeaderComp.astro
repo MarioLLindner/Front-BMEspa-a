@@ -1,0 +1,50 @@
+---
+import Logo from "@components/Logo.astro";
+---
+
+
+<header
+    id="landing-header"
+    class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center h-16 px-8">
+    <a href="/">
+        <Logo/>
+    </a>
+    <div>
+        <h1 class="uppeercase text-current">Bolsa de valores BME</h1>
+    </div>
+</header>
+
+<style>
+    header {
+        svg, h1 {
+            color:white;
+            transition: color 0.7s ease-in-out;
+        }
+        &.light {
+            svg, h1 {
+                color: black
+            }
+        }
+    }
+</style>
+
+<script>
+
+    const $header = document.querySelector("#landing-header") as HTMLElement
+    const $$sectionElements = document.querySelectorAll("section[data-header-theme='dark']")
+
+    const intersectionOptions = {
+        root: null, //elemento <body>
+        rootMargin: "0px",
+        threshold: 0.1    
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const lightMode = !entry.isIntersecting
+            $header.classList.toggle("light", lightMode)
+        })
+    }, intersectionOptions)
+
+    $$sectionElements.forEach((section => observer.observe(section)))
+</script>
