@@ -1,7 +1,37 @@
 ---
 import CompanySliderComp from "@components/CompanySliderComp.astro";
+import "node_modules/@glidejs/glide/dist/css/glide.core.min.css";
+import { Empresas } from "./StockMarket.astro";
 ---
 
-<section>
+<section class="border-b-[60px] border-lime-400 my-48">
     <!-- <CompanySliderComp class="scale-105" image="Empresas1" title="Empresas" /> -->
+
+    <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides grid grid-cols-10 bg-lime-400">
+                {
+                    Empresas.map((emp) => (
+                        <li class="col-span-1 glide_slide">
+                            <button>
+                                <img
+                                    class="aspect-[160/100] h-full w-full object-top object-cover"
+                                    src={`/logos/${emp.Nombre}.png`}
+                                    alt={emp.Nombre}
+                                />
+                            </button>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+    <article class="aspect-[20/9] bg-gray-950"></article>
 </section>
+
+<script>
+    import Glide from "@glidejs/glide";
+    
+
+    const slider = new Glide(".glide").mount();
+</script>
