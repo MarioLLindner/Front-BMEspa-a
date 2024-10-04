@@ -1,21 +1,21 @@
 ---
-import CompanySliderComp from "@components/CompanySliderComp.astro";
 import "node_modules/@glidejs/glide/dist/css/glide.core.min.css";
 import { Empresas } from "./StockMarket.astro";
+import CandlestickChart from "@components/Candlechart.jsx";
 ---
 
 <section class="border-b-[60px] border-lime-400 my-48">
     <!-- <CompanySliderComp class="scale-105" image="Empresas1" title="Empresas" /> -->
 
-    <div class="glide">
+    <div id="indices-slider" class="glide">
         <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides grid grid-cols-10 bg-lime-400">
+            <ul class="glide__slides bg-lime-400">
                 {
-                    Empresas.map((emp) => (
-                        <li class="col-span-1 glide_slide">
-                            <button>
+                    Empresas.map((emp, index) => (
+                        <li class="glide_slide">
+                            <button data-slide={index}>
                                 <img
-                                    class="aspect-[160/100] h-full w-full object-top object-cover"
+                                    class="inline-flex aspect-[160/100] h-full w-full object-top object-cover"
                                     src={`/logos/${emp.Nombre}.png`}
                                     alt={emp.Nombre}
                                 />
@@ -26,12 +26,45 @@ import { Empresas } from "./StockMarket.astro";
             </ul>
         </div>
     </div>
-    <article class="aspect-[20/9] bg-gray-950"></article>
+    <article class="aspect-[23/9] bg-[#171717]">
+        <CandlestickChart client:load />
+    </article>
 </section>
+
+<style>
+    .glide_slide {
+        transition: background-color 0.5s ease-in-out;
+    }
+
+    .glide__slide--active {
+        @apply bg-[#171717];
+    }
+</style>
 
 <script>
     import Glide from "@glidejs/glide";
-    
+    const am4core = require("@amcharts/amcharts5/core");
+    const am4charts = require("@amcharts/amcharts5/charts");
 
-    const slider = new Glide(".glide").mount();
+    const $slider = document.querySelector("#indices-slider");
+
+    const glide = new Glide("#indices-slider", {
+        type: "carousel",
+        gap: 0,
+        focusAt: "center",
+        startAt: 6,
+        perView: 12,
+    }).mount();
+
+    $slider?.addEventListener("click", (e) => {
+        const clickedElement = e.target as HTMLElement;
+        const isButton = clickedElement.tagName === "BUTTON";
+        const buttonElement = isButton
+            ? clickedElement
+            : clickedElement.closest("button");
+        if (buttonElement) {
+            const index = buttonElement.dataset.slide;
+            glide.go(`=${index}`);
+        }
+    });
 </script>
