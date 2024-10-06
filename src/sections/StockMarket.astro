@@ -39,10 +39,10 @@ export const Empresas = [
         ],
     },
     {
-        Nombre: "Empresa2",
-        RefranEmpresa: "Refran2",
-        image: "Imagen de la Empresa",
-        logo: "/logos/apple.png",
+        Nombre: "Tesla INC",
+        RefranEmpresa: "The future is sustainable",
+        image: "/empresas/TeslaStockMarquet.jpg",
+        logo: "/empresas/TeslaLogo.png",
         link: "Link de la Empresa",
         actualidad: [
             {
@@ -221,72 +221,80 @@ export const Empresas = [
         <CompanySliderComp image="Empresas1" title="Empresas" />
      -->
 
-    {
-        Empresas.map((emp) => (
-            <article class="relative border-t-2 last:border-b-2 border-black">
-                <button class="group pl-[60px] ml-14 flex">
-                    <div class="-z-20 absolute left-0 h-full w-[60px] bg-lime-400 group-hover:w-full transition-all duration-700 ease-proyect-timing" />
-                    <div
-                        class="-z-10 
+    <div id="company-container" class="flex bg-white z-10 relative">
+        <div id="company-list" class="w-screen flex-shrink-0">
+            {
+                Empresas.map((emp, index) => (
+                    <article class="relative border-t-2 last:border-b-2 border-black">
+                        <button data-id={index} class="group pl-[60px] ml-14 flex">
+                            <div class="-z-20 absolute left-0 h-full w-[60px] bg-lime-400 group-hover:w-full transition-all duration-700 ease-proyect-timing" />
+                            <div
+                                class="-z-10 
                     absolute inset-0 delay-700 h-full w-full 
                     bg-cover bg-center bg-no-repeat opacity-0 transition-opacity duration-700 ease-proyect-timing group-hover:opacity-100"
-                        style={`background-image: url(${emp.image});`}
-                    />
-                    <div class="py-8">
-                        <h3 class="uppercase tracking-tighter text-8xl font-bold">
-                            {emp.Nombre}
-                        </h3>
-                        <h4 class="uppercase text-2xl text-left group-hover:opacity-0 transition-opacity duration-700 ease-proyect-timing">
-                            {emp.RefranEmpresa}
-                        </h4>
-                    </div>
-                    <div class="absolute right-0 border-l border-black h-full w-[300px] flex items-center justify-center">
-                        <svg
-                            class="arrow text-black group-hover:text-white group-hover:-translate-x-4 transition duration-700 ease-proyect-timing"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="58"
-                            height="23"
-                            fill="none"
-                            viewBox="0 0 58 23"
-                        >
-                            <path
-                                stroke="currentColor"
-                                d="M0 11.458h56.842M46.304 1l10.538 10.538-10.538 10.538"
+                                style={`background-image: url(${emp.image});`}
                             />
-                        </svg>
-                    </div>
-                </button>
-            </article>
-        ))
-    }
-
-    <article class="border-black border-y-2 relative flex flex-row h-full">
-        <div class="w-[55%] h-full">
-            <header class="px-28 pt-16">
-                <h2 class="text-7xl font-bold uppercase mb-12 tracking-tighter">
-                    Apple Inc. va Grafico AQUI achichar Imagen
-                </h2>
-            </header>
-            <footer
-                class="flex flex-col mt-24 bg-lime-400 justify-center items-center py-12"
-            >
-                <div class="p-8">
-                    <div class="grid grid-cols-4 gap-16 text-center">
-                        <CompanyDetailsInfo label="Max" value="15" />
-                        <CompanyDetailsInfo label="Min" value="15" />
-                        <CompanyDetailsInfo label="%" value="15" />
-                        <CompanyDetailsInfo label="Value" value="15" />
-                    </div>
-                </div>
-                <a
-                    class="py-4 px-14 text-lime-400 bg-[#171717] uppercase font-bold text-3xl rounded-full"
-                    href="">LINK</a
-                >
-            </footer>
+                            <div class="py-8">
+                                <h3 class="uppercase tracking-tighter text-8xl font-bold">
+                                    {emp.Nombre}
+                                </h3>
+                                <h4 class="uppercase text-2xl text-left group-hover:opacity-0 transition-opacity duration-700 ease-proyect-timing">
+                                    {emp.RefranEmpresa}
+                                </h4>
+                            </div>
+                            <div class="absolute right-0 border-l border-black h-full w-[300px] flex items-center justify-center">
+                                <svg
+                                    class="arrow text-black group-hover:text-white group-hover:-translate-x-4 transition duration-700 ease-proyect-timing"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="58"
+                                    height="23"
+                                    fill="none"
+                                    viewBox="0 0 58 23"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        d="M0 11.458h56.842M46.304 1l10.538 10.538-10.538 10.538"
+                                    />
+                                </svg>
+                            </div>
+                        </button>
+                    </article>
+                ))
+            }
         </div>
-        <figure class="w-[45%] h-full"></figure>
-        <img class="h-full" src="/empresas/Apple-inc.webp" alt="Apple Inc" />
-    </article>
+        <article class="border-black border-y-2 relative flex flex-row h-full w-screen flex-shrink-0">
+            <div class="w-[55%] h-full">
+                <button id="close-button" class="absolute top-4 left-4 bg-red-500 text-white py-2 px-4 rounded-full font-bold">
+                    Cerrar
+                </button>
+                <header class="px-28 pt-16">
+                    <h2 class="text-7xl font-bold uppercase mb-12 tracking-tighter">
+                        Apple Inc. va Grafico AQUI achichar Imagen
+                    </h2>
+                </header>
+                <footer
+                    class="flex flex-col mt-24 bg-lime-400 justify-center items-center py-12"
+                >
+                    <div class="p-8">
+                        <div class="grid grid-cols-4 gap-16 text-center">
+                            <CompanyDetailsInfo label="Max" value="15" />
+                            <CompanyDetailsInfo label="Min" value="15" />
+                            <CompanyDetailsInfo label="%" value="15" />
+                            <CompanyDetailsInfo label="Value" value="15" />
+                        </div>
+                    </div>
+                    <a
+                        class="py-4 px-14 text-lime-400 bg-[#171717] uppercase font-bold text-3xl rounded-full"
+                        href="">LINK</a
+                    >
+                </footer>
+            </div>
+            <figure class="w-[45%] h-full"></figure>
+            <img class="h-full" src="/empresas/Apple-inc.webp" alt="Apple Inc" />
+        </article>
+    </div>
+
+
 </section>
 
 <style>
@@ -299,6 +307,14 @@ export const Empresas = [
     article:hover h3 {
         animation: Empresas-nombre 1.5s cubic-bezier(0.61, 0.03, 0.08, 0.99)
             both;
+    }
+
+
+    #company-container {
+        transition: transform 700ms ease;
+        &.slide-in {
+            transform: translateX(-100%);
+        }
     }
 
     @keyframes Empresas-nombre {
@@ -314,3 +330,20 @@ export const Empresas = [
         }
     }
 </style>
+
+<script>
+    const $container = document.querySelector("#company-container") as HTMLElement
+    const $list = document.querySelector("#company-list") as HTMLElement
+    const $buttons = $list.querySelectorAll('button')
+    const $closeButton = document.querySelector("#close-button") as HTMLElement
+
+    $buttons.forEach((button, index) => {
+        button.addEventListener("click", (e) => {
+            $container.classList.add("slide-in")
+        })
+    })
+
+    $closeButton.addEventListener("click", (e) => {
+        $container.classList.remove("slide-in")
+    })
+</script>

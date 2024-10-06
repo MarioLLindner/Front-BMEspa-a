@@ -1,10 +1,10 @@
 ---
 import "node_modules/@glidejs/glide/dist/css/glide.core.min.css";
 import { Empresas } from "./StockMarket.astro";
-import CandlestickChart from "@components/Candlechart.jsx";
+/* import CandlestickChart from "@components/Candlechart.jsx"; */
 ---
 
-<section class="border-b-[60px] border-lime-400 my-48">
+<section class="border-b-[60px] border-lime-400 mb-48">
     <!-- <CompanySliderComp class="scale-105" image="Empresas1" title="Empresas" /> -->
 
     <div id="indices-slider" class="glide">
@@ -27,7 +27,7 @@ import CandlestickChart from "@components/Candlechart.jsx";
         </div>
     </div>
     <article class="aspect-[23/9] bg-[#171717]">
-        <CandlestickChart client:load />
+       <!--  <CandlestickChart client:load /> -->
     </article>
 </section>
 
@@ -43,8 +43,6 @@ import CandlestickChart from "@components/Candlechart.jsx";
 
 <script>
     import Glide from "@glidejs/glide";
-    const am4core = require("@amcharts/amcharts5/core");
-    const am4charts = require("@amcharts/amcharts5/charts");
 
     const $slider = document.querySelector("#indices-slider");
 
