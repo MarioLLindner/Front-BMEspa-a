@@ -1,7 +1,8 @@
 ---
 import "node_modules/@glidejs/glide/dist/css/glide.core.min.css";
 import { Empresas } from "./StockMarket.astro";
-/* import CandlestickChart from "@components/Candlechart.jsx"; */
+import CandlestickChart from "@components/Candlechart.jsx";
+import type { only } from "node:test";
 ---
 
 <section class="border-b-[60px] border-lime-400 mb-48">
@@ -27,7 +28,7 @@ import { Empresas } from "./StockMarket.astro";
         </div>
     </div>
     <article class="aspect-[23/9] bg-[#171717]">
-       <!--  <CandlestickChart client:load /> -->
+         <CandlestickChart client:only = "react" />
     </article>
 </section>
 

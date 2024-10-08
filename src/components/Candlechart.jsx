@@ -106,6 +106,7 @@ const CandlestickChart = () => {
         })
       })
     );
+    
 
     // Add legend
     let legend = yAxis.axisHeader.children.push(am5.Legend.new(root, {}));
