@@ -68,10 +68,15 @@ const CandlestickChart = () => {
         maxDeviation: 0.5,
         baseInterval: { timeUnit: "day", count: 1 },
         renderer: am5xy.AxisRendererX.new(root, {
+          strokeOpacity: 1,
+          strokeWidth: 2,
           pan: "zoom",
-          minorGridEnabled: true
+          minorGridEnabled: true,
         }),
-        tooltip: am5.Tooltip.new(root, {})
+        tooltip: am5.Tooltip.new(root, {
+/*           themeTags: ["axis"],
+          animationDuration: 300 */
+        })
       })
     );
 
@@ -80,16 +85,19 @@ const CandlestickChart = () => {
       am5xy.ValueAxis.new(root, {
         maxDeviation: 1,
         renderer: am5xy.AxisRendererY.new(root, {
-          pan: "zoom"
+          pan: "zoom",
+          strokeOpacity: 1,
+          strokeWidth: 2,
         })
       })
     );
+
 
     // Add Candlestick series
     let series = chart.series.push(
       am5xy.CandlestickSeries.new(root, {
         calculateAggregates: true,
-        name: "MDXI",
+        name: "BME",
         xAxis: xAxis,
         yAxis: yAxis,
         valueYField: "value",
@@ -97,23 +105,45 @@ const CandlestickChart = () => {
         lowValueYField: "low",
         highValueYField: "high",
         valueXField: "date",
-        legendValueText:
-          "open: {openValueY} low: {lowValueY} high: {highValueY} close: {valueY}",
         tooltip: am5.Tooltip.new(root, {
           pointerOrientation: "horizontal",
           labelText:
-            "open: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}"
+            "{name}\nopen: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}"
         })
-      })
+      },
+      ),
     );
-    
+
+    let series2 = chart.series.push(
+      am5xy.CandlestickSeries.new(root, {
+        calculateAggregates: true,
+        name: "Nasdaq",
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueYField: "value",
+        openValueYField: "open",
+        lowValueYField: "low",
+        highValueYField: "high",
+        valueXField: "date",
+        //Para Quitar los textos
+        tooltip: am5.Tooltip.new(root, {
+          pointerOrientation: "horizontal",
+          labelText:
+            "{name}\nopen: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}"
+        })
+      },
+      ),
+    );
+
 
     // Add legend
     let legend = yAxis.axisHeader.children.push(am5.Legend.new(root, {}));
     legend.data.push(series);
+    legend.data.push(series2);
 
     // Set chart data
     series.data.setAll(data);
+    series2.data.setAll(data);
 
     // Add scrollbar
     let scrollbar = am5xy.XYChartScrollbar.new(root, {
@@ -141,7 +171,7 @@ const CandlestickChart = () => {
     };
   }, []);
 
-  return <div id="candlestickChartdiv" style={{ width: "100%", height: "500px" }}></div>;
+  return <div id="candlestickChartdiv" style={{ width: "100%", height: "700px" }}></div>;
 };
 
 export default CandlestickChart;

@@ -299,7 +299,14 @@ export const Empresas = [
                             </div>
                         </button>
                     </article>
-                     <article
+
+                ))
+            }
+        </div>
+        <div>
+        {
+            Empresas.map((emp,index) => (
+            <article
             class="EmpDetalle border-black border-y-2 relative flex flex-row h-full w-screen flex-shrink-0"
         >
             <div class="w-[55%] h-full">
@@ -334,13 +341,11 @@ export const Empresas = [
                 </footer>
             </div>
             <figure class="w-[45%] h-full"></figure>
-            <img class="h-full" src='${emp.image}' alt="Apple Inc" />
-        </article>
-                ))
-            }
-        </div>
-
-        
+            <img class="h-full" src=`${emp.image}` alt="Apple Inc" />
+            </article>   
+            ))
+        }
+    </div>
     </div>
 </section>
 
