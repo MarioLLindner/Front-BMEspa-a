@@ -1,38 +1,38 @@
-
-// CandlestickChart.js
 import React, { useLayoutEffect } from "react";
 import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-
-const CandlestickChart = () => {
+const CandleChartProEmpresas = () => {
   useLayoutEffect(() => {
     // Create root element
-    let root = am5.Root.new("candlestickChartdiv");
+    let root = am5.Root.new("chartdiv");
 
-    // Apply theme
+    // Create a theme
     const myTheme = am5.Theme.new(root);
     myTheme.rule("Grid", ["scrollbar", "minor"]).setAll({
-      visible: false
+      visible: false,
     });
 
-    root.setThemes([am5themes_Animated.new(root), myTheme]);
+    // Set themes
+    root.setThemes([
+      am5themes_Animated.new(root),
+      myTheme
+    ]);
 
     // Generate chart data
     function generateChartData() {
       let chartData = [];
       let firstDate = new Date();
-      firstDate.setDate(firstDate.getDate() - 2000);
+      firstDate.setDate(firstDate.getDate() - 1000);
       firstDate.setHours(0, 0, 0, 0);
       let value = 1200;
-
-      for (let i = 0; i < 2000; i++) {
+      for (let i = 0; i < 1000; i++) {
         let newDate = new Date(firstDate);
         newDate.setDate(newDate.getDate() + i);
 
         value += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-        let open = value + Math.round(Math.random() * 16 - 8);
+        let open = value + Math.round(Math.random() * 16 - 7);
         let low = Math.min(value, open) - Math.round(Math.random() * 5);
         let high = Math.max(value, open) + Math.round(Math.random() * 5);
 
@@ -57,46 +57,42 @@ const CandlestickChart = () => {
         panY: true,
         wheelX: "panX",
         wheelY: "zoomX",
-        paddingLeft: 0
+        paddingLeft: 0,
       })
     );
 
-    // Create X-axis (DateAxis)
+    // Create axes
     let xAxis = chart.xAxes.push(
       am5xy.DateAxis.new(root, {
-        groupData: true,
         maxDeviation: 0.5,
+        groupData: true,
         baseInterval: { timeUnit: "day", count: 1 },
         renderer: am5xy.AxisRendererX.new(root, {
-          strokeOpacity: 1,
-          strokeWidth: 2,
           pan: "zoom",
           minorGridEnabled: true,
         }),
         tooltip: am5.Tooltip.new(root, {
-/*           themeTags: ["axis"],
-          animationDuration: 300 */
-        })
+          themeTags: ["axis"],
+          animationDuration: 300,
+        }),
       })
     );
 
-    // Create Y-axis (ValueAxis)
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         maxDeviation: 1,
-        renderer: am5xy.AxisRendererY.new(root, {
-          pan: "zoom",
-          strokeOpacity: 1,
-          strokeWidth: 2,
-        })
+        renderer: am5xy.AxisRendererY.new(root, { pan: "zoom" }),
       })
     );
 
+    let color = root.interfaceColors.get("background");
 
-    // Add Candlestick series
+    // Add series
     let series = chart.series.push(
       am5xy.CandlestickSeries.new(root, {
+        fill: color,
         calculateAggregates: true,
+        stroke: color,
         name: "BME",
         xAxis: xAxis,
         yAxis: yAxis,
@@ -105,73 +101,127 @@ const CandlestickChart = () => {
         lowValueYField: "low",
         highValueYField: "high",
         valueXField: "date",
+        lowValueYGrouped: "low",
+        highValueYGrouped: "high",
+        openValueYGrouped: "open",
+        valueYGrouped: "close",
+/*         legendValueText: "open: {openValueY} low: {lowValueY} high: {highValueY} close: {valueY}", */
+        legendRangeValueText: "Valor: U$D{valueYClose}",
         tooltip: am5.Tooltip.new(root, {
           pointerOrientation: "horizontal",
-          labelText:
-            "{name}\nopen: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}"
+          labelText: "{name}\nopen: ${openValueY}\nlow: ${lowValueY}\nhigh: ${highValueY}\nclose: ${valueY}"
         })
-      },
-      ),
+      })
     );
 
     let series2 = chart.series.push(
-      am5xy.CandlestickSeries.new(root, {
-        calculateAggregates: true,
-        name: "Nasdaq",
-        xAxis: xAxis,
-        yAxis: yAxis,
-        valueYField: "value",
-        openValueYField: "open",
-        lowValueYField: "low",
-        highValueYField: "high",
-        valueXField: "date",
-        //Para Quitar los textos
-        tooltip: am5.Tooltip.new(root, {
-          pointerOrientation: "horizontal",
-          labelText:
-            "{name}\nopen: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}"
+        am5xy.CandlestickSeries.new(root, {
+          fill: color,
+          calculateAggregates: true,
+          stroke: color,
+          name: "Nasdaq",
+          xAxis: xAxis,
+          yAxis: yAxis,
+          valueYField: "value",
+          openValueYField: "open",
+          lowValueYField: "low",
+          highValueYField: "high",
+          valueXField: "date",
+          lowValueYGrouped: "low",
+          highValueYGrouped: "high",
+          openValueYGrouped: "open",
+          valueYGrouped: "close",
+/*           legendValueText: "open: {openValueY} low: {lowValueY} high: {highValueY} close: {valueY}", */
+          legendRangeValueText: "Valor: U$D{valueYClose}",
+          tooltip: am5.Tooltip.new(root, {
+            pointerOrientation: "horizontal",
+            labelText: "{name}\nopen: ${openValueY}\nlow: ${lowValueY}\nhigh: ${highValueY}\nclose: ${valueY}"
+          })
         })
-      },
-      ),
+      );
+
+    series.columns.template.get("themeTags").push("pro");
+    series2.columns.template.get("themeTags").push("pro");
+
+    // Add cursor
+    let cursor = chart.set(
+      "cursor",
+      am5xy.XYCursor.new(root, {
+        xAxis: xAxis,
+      })
+    );
+    cursor.lineY.set("visible", false);
+
+    // Stack axes vertically
+    chart.leftAxesContainer.set("layout", root.verticalLayout);
+
+    // Add scrollbar
+    let scrollbar = am5xy.XYChartScrollbar.new(root, {
+      orientation: "horizontal",
+      height: 50,
+    });
+    chart.set("scrollbarX", scrollbar);
+
+    let sbxAxis = scrollbar.chart.xAxes.push(
+      am5xy.DateAxis.new(root, {
+        groupData: true,
+        groupIntervals: [{ timeUnit: "week", count: 1 }],
+        baseInterval: { timeUnit: "day", count: 1 },
+        renderer: am5xy.AxisRendererX.new(root, {
+          opposite: false,
+          strokeOpacity: 0,
+          minorGridEnabled: true,
+        }),
+      })
     );
 
+    let sbyAxis = scrollbar.chart.yAxes.push(
+      am5xy.ValueAxis.new(root, {
+        renderer: am5xy.AxisRendererY.new(root, {}),
+      })
+    );
+
+    let sbseries = scrollbar.chart.series.push(
+      am5xy.LineSeries.new(root, {
+        xAxis: sbxAxis,
+        yAxis: sbyAxis,
+        valueYField: "value",
+        valueXField: "date",
+      })
+    );
 
     // Add legend
     let legend = yAxis.axisHeader.children.push(am5.Legend.new(root, {}));
     legend.data.push(series);
     legend.data.push(series2);
 
-    // Set chart data
+    legend.markers.template.setAll({
+      width: 10,
+    });
+
+    legend.markerRectangles.template.setAll({
+      cornerRadiusTR: 0,
+      cornerRadiusBR: 0,
+      cornerRadiusTL: 0,
+      cornerRadiusBL: 0,
+    });
+
+    // Set data
+    sbseries.data.setAll(data);
     series.data.setAll(data);
     series2.data.setAll(data);
 
-    // Add scrollbar
-    let scrollbar = am5xy.XYChartScrollbar.new(root, {
-      orientation: "horizontal",
-      height: 50
-    });
-    chart.set("scrollbarX", scrollbar);
-
-    // Add cursor
-    let cursor = chart.set(
-      "cursor",
-      am5xy.XYCursor.new(root, {
-        xAxis: xAxis
-      })
-    );
-    cursor.lineY.set("visible", false);
-
-    // Animate series and chart
+    // Animate on load
     series.appear(1000);
     chart.appear(1000, 100);
 
-    // Cleanup on component unmount
+    // Clean up on component unmount
     return () => {
       root.dispose();
     };
   }, []);
 
-  return <div id="candlestickChartdiv" style={{ width: "100%", height: "700px" }}></div>;
+  return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
 };
 
-export default CandlestickChart;
+export default CandleChartProEmpresas;
