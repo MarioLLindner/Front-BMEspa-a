@@ -8,6 +8,11 @@ const CandleChartPro = () => {
     // Create root element
     let root = am5.Root.new("chartdiv");
 
+    //Ocultar el logo de Amcharts
+    if (root._logo) {
+      root._logo.dispose();
+    }
+
     // Create a theme
     const myTheme = am5.Theme.new(root);
     myTheme.rule("Grid", ["scrollbar", "minor"]).setAll({

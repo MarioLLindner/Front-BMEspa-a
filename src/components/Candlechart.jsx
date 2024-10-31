@@ -8,26 +8,23 @@ const CandleChartProEmpresas = () => {
     // Create root element
     let root = am5.Root.new("chartdiv");
 
-    // Create a theme
     const myTheme = am5.Theme.new(root);
+
     myTheme.rule("Grid", ["scrollbar", "minor"]).setAll({
-      visible: false,
+      visible: false
     });
 
-    // Set themes
     root.setThemes([
       am5themes_Animated.new(root),
       myTheme
     ]);
-
-    // Generate chart data
     function generateChartData() {
       let chartData = [];
       let firstDate = new Date();
       firstDate.setDate(firstDate.getDate() - 1000);
       firstDate.setHours(0, 0, 0, 0);
       let value = 1200;
-      for (let i = 0; i < 1000; i++) {
+      for (var i = 0; i < 1000; i++) {
         let newDate = new Date(firstDate);
         newDate.setDate(newDate.getDate() + i);
 
@@ -50,6 +47,7 @@ const CandleChartProEmpresas = () => {
     let data = generateChartData();
 
     // Create chart
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/
     let chart = root.container.children.push(
       am5xy.XYChart.new(root, {
         focusable: true,
@@ -57,11 +55,12 @@ const CandleChartProEmpresas = () => {
         panY: true,
         wheelX: "panX",
         wheelY: "zoomX",
-        paddingLeft: 0,
+        paddingLeft: 0
       })
     );
 
     // Create axes
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
     let xAxis = chart.xAxes.push(
       am5xy.DateAxis.new(root, {
         maxDeviation: 0.5,
@@ -73,27 +72,38 @@ const CandleChartProEmpresas = () => {
         }),
         tooltip: am5.Tooltip.new(root, {
           themeTags: ["axis"],
-          animationDuration: 300,
-        }),
+          animationDuration: 300
+        })
       })
     );
+
+    xAxis.get("renderer").labels.template.setAll({
+      fontSize:50, 
+    });
 
     let yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         maxDeviation: 1,
-        renderer: am5xy.AxisRendererY.new(root, { pan: "zoom" }),
+        renderer: am5xy.AxisRendererY.new(root, { pan: "zoom" })
       })
     );
+
+    yAxis.get("renderer").labels.template.setAll({
+      fontSize:50, 
+    });
+
+
 
     let color = root.interfaceColors.get("background");
 
     // Add series
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
     let series = chart.series.push(
       am5xy.CandlestickSeries.new(root, {
         fill: color,
         calculateAggregates: true,
         stroke: color,
-        name: "BME",
+        name: "MDXI",
         xAxis: xAxis,
         yAxis: yAxis,
         valueYField: "value",
@@ -105,60 +115,37 @@ const CandleChartProEmpresas = () => {
         highValueYGrouped: "high",
         openValueYGrouped: "open",
         valueYGrouped: "close",
-/*         legendValueText: "open: {openValueY} low: {lowValueY} high: {highValueY} close: {valueY}", */
-        legendRangeValueText: "Valor: U$D{valueYClose}",
+        legendValueText: "open: {openValueY} low: {lowValueY} high: {highValueY} close: {valueY}",
+        legendRangeValueText: "{valueYClose}",
         tooltip: am5.Tooltip.new(root, {
           pointerOrientation: "horizontal",
-          labelText: "{name}\nopen: ${openValueY}\nlow: ${lowValueY}\nhigh: ${highValueY}\nclose: ${valueY}"
+          labelText: "open: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}"
         })
       })
     );
 
-    let series2 = chart.series.push(
-        am5xy.CandlestickSeries.new(root, {
-          fill: color,
-          calculateAggregates: true,
-          stroke: color,
-          name: "Nasdaq",
-          xAxis: xAxis,
-          yAxis: yAxis,
-          valueYField: "value",
-          openValueYField: "open",
-          lowValueYField: "low",
-          highValueYField: "high",
-          valueXField: "date",
-          lowValueYGrouped: "low",
-          highValueYGrouped: "high",
-          openValueYGrouped: "open",
-          valueYGrouped: "close",
-/*           legendValueText: "open: {openValueY} low: {lowValueY} high: {highValueY} close: {valueY}", */
-          legendRangeValueText: "Valor: U$D{valueYClose}",
-          tooltip: am5.Tooltip.new(root, {
-            pointerOrientation: "horizontal",
-            labelText: "{name}\nopen: ${openValueY}\nlow: ${lowValueY}\nhigh: ${highValueY}\nclose: ${valueY}"
-          })
-        })
-      );
-
+    // make professional
     series.columns.template.get("themeTags").push("pro");
-    series2.columns.template.get("themeTags").push("pro");
 
     // Add cursor
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
     let cursor = chart.set(
       "cursor",
       am5xy.XYCursor.new(root, {
-        xAxis: xAxis,
+        xAxis: xAxis
       })
     );
     cursor.lineY.set("visible", false);
 
     // Stack axes vertically
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/#Stacked_axes
     chart.leftAxesContainer.set("layout", root.verticalLayout);
 
     // Add scrollbar
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/scrollbars/
     let scrollbar = am5xy.XYChartScrollbar.new(root, {
       orientation: "horizontal",
-      height: 50,
+      height: 50
     });
     chart.set("scrollbarX", scrollbar);
 
@@ -170,14 +157,14 @@ const CandleChartProEmpresas = () => {
         renderer: am5xy.AxisRendererX.new(root, {
           opposite: false,
           strokeOpacity: 0,
-          minorGridEnabled: true,
-        }),
+          minorGridEnabled: true
+        })
       })
     );
 
     let sbyAxis = scrollbar.chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
-        renderer: am5xy.AxisRendererY.new(root, {}),
+        renderer: am5xy.AxisRendererY.new(root, {})
       })
     );
 
@@ -186,32 +173,40 @@ const CandleChartProEmpresas = () => {
         xAxis: sbxAxis,
         yAxis: sbyAxis,
         valueYField: "value",
-        valueXField: "date",
+        valueXField: "date"
       })
     );
 
     // Add legend
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
     let legend = yAxis.axisHeader.children.push(am5.Legend.new(root, {}));
+
     legend.data.push(series);
-    legend.data.push(series2);
+
+    legend.labels.template.setAll({
+      fontSize:30, 
+    });
+    legend.valueLabels.template.setAll({
+      fontSize:30, 
+    });
 
     legend.markers.template.setAll({
-      width: 10,
+      width: 10
     });
 
     legend.markerRectangles.template.setAll({
       cornerRadiusTR: 0,
       cornerRadiusBR: 0,
       cornerRadiusTL: 0,
-      cornerRadiusBL: 0,
+      cornerRadiusBL: 0
     });
 
-    // Set data
+    // set data
     sbseries.data.setAll(data);
     series.data.setAll(data);
-    series2.data.setAll(data);
 
-    // Animate on load
+    // Make stuff animate on load
+    // https://www.amcharts.com/docs/v5/concepts/animations/
     series.appear(1000);
     chart.appear(1000, 100);
 
@@ -221,7 +216,7 @@ const CandleChartProEmpresas = () => {
     };
   }, []);
 
-  return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
+  return <div id="chartdiv" style={{ width: "100%", height: "600px" }}></div>;
 };
 
 export default CandleChartProEmpresas;

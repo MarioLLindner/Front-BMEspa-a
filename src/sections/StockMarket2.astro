@@ -2,14 +2,15 @@
 import CandleChartProEmpresas from "@components/Candlechart";
 import CompanyDetailsInfo from "@components/CompanyDetailsInfo.astro";
 import CompanySliderComp from "@components/CompanySliderComp.astro";
-
+import CambiarNombre from "@components/CambiarNombre.astro" 
+import EmpresaActual  from "./StockMarket2.astro";
 export const Empresas = [
     {
         Nombre: "Apple INC",
         RefranEmpresa: "Think different",
         image: "/empresas/AppleStockMarquet.jpg",
         logo: "/logos/Apple INC.png",
-        link: "Link de la Empresa",
+        link: "www.apple.com",
         actualidad: [
             {
                 value: 0,
@@ -44,7 +45,7 @@ export const Empresas = [
         RefranEmpresa: "The future is sustainable",
         image: "/empresas/TeslaStockMarquet.jpg",
         logo: "/empresas/Tesla INC.jpg",
-        link: "Link de la Empresa",
+        link: "www.google.com",
         actualidad: [
             {
                 value: 0,
@@ -263,7 +264,8 @@ export const Empresas = [
         <div id="company-list" class="w-screen flex-shrink-0">
             {
                 Empresas.map((emp, index) => (
-                    <article class="relative border-t-2 last:border-b-2 border-black">
+                    <div class="flex flex-row w-full justify-between">
+                    <article class="relative border-t-2 last:border-b-2 border-black w-full">
                         <button
                             data-id={index}
                             class="group pl-[60px] ml-14 flex"
@@ -301,14 +303,7 @@ export const Empresas = [
                             </div>
                         </button>
                     </article>
-
-                ))
-            }
-        </div>
-        <div>
-        {
-            Empresas.map((emp,index) => (
-            <article
+                    {/* <article
             class="EmpDetalle border-black border-y-2 relative flex flex-row h-full w-screen flex-shrink-0"
         >
             <div class="w-[55%] h-full">
@@ -344,10 +339,16 @@ export const Empresas = [
             </div>
             <figure class="w-[45%] h-full"></figure>
             <img class="h-full max-h-[900px] max-w-[880px]" src={emp.image} alt={emp.Nombre} />
-            </article>   
-            ))
-        }
-    </div>
+            </article> */}
+            
+        </div>
+
+                ))
+            }
+        </div>
+        <div>
+            <CambiarNombre client:load Empresa={EmpresaActual}/>
+        </div>
     </div>
 </section>
 
@@ -375,6 +376,9 @@ export const Empresas = [
         display: none;
         &.display-block {
             display: block;
+/*             width: 100vw;
+            position: relative;
+             left: 80vw; */
         }
     }
 
@@ -393,6 +397,10 @@ export const Empresas = [
 </style>
 
 <script>
+import { Empresas } from "./StockMarket.astro";
+
+     export let EmpresaActual = {}
+
     const $container = document.querySelector(
         "#company-container",
     ) as HTMLElement;
@@ -404,7 +412,8 @@ export const Empresas = [
 
     $buttons.forEach((button, index) => {
         button.addEventListener("click", (e) => {
-            console.log($ConteinerDetalle)
+            EmpresaActual = Empresas[index];
+            console.log(EmpresaActual)
             $container.classList.add("slide-in");
             $ConteinerDetalle.classList.add("display-block");
         });
