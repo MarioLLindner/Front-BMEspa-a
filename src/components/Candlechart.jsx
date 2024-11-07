@@ -78,7 +78,7 @@ const CandleChartProEmpresas = () => {
     );
 
     xAxis.get("renderer").labels.template.setAll({
-      fontSize:50, 
+      fontSize:30, 
     });
 
     let yAxis = chart.yAxes.push(
@@ -89,7 +89,7 @@ const CandleChartProEmpresas = () => {
     );
 
     yAxis.get("renderer").labels.template.setAll({
-      fontSize:50, 
+      fontSize:30, 
     });
 
 
@@ -191,7 +191,7 @@ const CandleChartProEmpresas = () => {
     });
 
     legend.markers.template.setAll({
-      width: 10
+      width: 20
     });
 
     legend.markerRectangles.template.setAll({
