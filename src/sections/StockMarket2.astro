@@ -2,8 +2,9 @@
 import CandleChartProEmpresas from "@components/Candlechart";
 import CompanyDetailsInfo from "@components/CompanyDetailsInfo.astro";
 import CompanySliderComp from "@components/CompanySliderComp.astro";
-import CambiarNombre from "@components/CambiarNombre.astro" 
-import EmpresaActual  from "./StockMarket2.astro";
+import CambiarNombre from "@components/CambiarNombre.astro";
+import EmpresaActual from "./StockMarket2.astro";
+import { ListaEmpresas } from "@components/Empresas/Empresas";
 export const Empresas = [
     {
         Nombre: "Apple INC",
@@ -251,9 +252,7 @@ export const Empresas = [
         ],
     },
 ];
-
 ---
-    
 
 <section>
     <!--    
@@ -261,49 +260,50 @@ export const Empresas = [
      -->
 
     <div id="company-container" class="flex bg-white z-10 relative">
-        <div id="company-list" class="w-screen flex-shrink-0">
+        <ListaEmpresas client:only = "react" empresas={Empresas}/>
+<!--         <div id="company-list" class="w-screen flex-shrink-0">
             {
                 Empresas.map((emp, index) => (
                     <div class="flex flex-row w-full justify-between">
-                    <article class="relative border-t-2 last:border-b-2 border-black w-full">
-                        <button
-                            data-id={index}
-                            class="group pl-[60px] ml-14 flex"
-                        >
-                            <div class="-z-20 absolute left-0 h-full w-[60px] bg-lime-400 group-hover:w-full transition-all duration-700 ease-proyect-timing" />
-                            <div
-                                class="h-full w-full bg-cover bg-center bg-no-repeat
+                        <article class="relative border-t-2 last:border-b-2 border-black w-full">
+                            <button
+                                data-id={index}
+                                class="group pl-[60px] ml-14 flex"
+                            >
+                                <div class="-z-20 absolute left-0 h-full w-[60px] bg-lime-400 group-hover:w-full transition-all duration-700 ease-proyect-timing" />
+                                <div
+                                    class="h-full w-full bg-cover bg-center bg-no-repeat
                                     opacity-0 transition-opacity duration-700 ease-proyect-timing 
                                     -z-10 absolute inset-0 delay-700  
                                      group-hover:opacity-100"
-                                style={`background-image: url(${emp.image});`}
-                            />
-                            <div class="py-8">
-                                <h3 class="uppercase tracking-tighter text-8xl font-bold">
-                                    {emp.Nombre}
-                                </h3>
-                                <h4 class="uppercase text-2xl text-left group-hover:opacity-0 transition-opacity duration-700 ease-proyect-timing">
-                                    {emp.RefranEmpresa}
-                                </h4>
-                            </div>
-                            <div class="absolute right-0 border-l border-black h-full w-[300px] flex items-center justify-center">
-                                <svg
-                                    class="arrow text-black group-hover:text-white group-hover:-translate-x-4 transition duration-700 ease-proyect-timing"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="58"
-                                    height="23"
-                                    fill="none"
-                                    viewBox="0 0 58 23"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        d="M0 11.458h56.842M46.304 1l10.538 10.538-10.538 10.538"
-                                    />
-                                </svg>
-                            </div>
-                        </button>
-                    </article>
-                    {/* <article
+                                    style={`background-image: url(${emp.image});`}
+                                />
+                                <div class="py-8">
+                                    <h3 class="uppercase tracking-tighter text-8xl font-bold">
+                                        {emp.Nombre}
+                                    </h3>
+                                    <h4 class="uppercase text-2xl text-left group-hover:opacity-0 transition-opacity duration-700 ease-proyect-timing">
+                                        {emp.RefranEmpresa}
+                                    </h4>
+                                </div>
+                                <div class="absolute right-0 border-l border-black h-full w-[300px] flex items-center justify-center">
+                                    <svg
+                                        class="arrow text-black group-hover:text-white group-hover:-translate-x-4 transition duration-700 ease-proyect-timing"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="58"
+                                        height="23"
+                                        fill="none"
+                                        viewBox="0 0 58 23"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            d="M0 11.458h56.842M46.304 1l10.538 10.538-10.538 10.538"
+                                        />
+                                    </svg>
+                                </div>
+                            </button>
+                        </article>
+                        {/* <article
             class="EmpDetalle border-black border-y-2 relative flex flex-row h-full w-screen flex-shrink-0"
         >
             <div class="w-[55%] h-full">
@@ -340,20 +340,18 @@ export const Empresas = [
             <figure class="w-[45%] h-full"></figure>
             <img class="h-full max-h-[900px] max-w-[880px]" src={emp.image} alt={emp.Nombre} />
             </article> */}
-            
-        </div>
-
+                    </div>
                 ))
             }
-        </div>
-        <div>
-            <CambiarNombre client:load Empresa={EmpresaActual}/>
-        </div>
+        </div> -->
+        <!-- <div>
+            <CambiarNombre component-hydration Empresa={EmpresaActual} />
+        </div> -->
     </div>
 </section>
 
 <style>
-    .arrow {
+/*     .arrow {
         transition:
             transform 700ms,
             color 700ms 700ms;
@@ -362,7 +360,7 @@ export const Empresas = [
     article:hover h3 {
         animation: Empresas-nombre 1.5s cubic-bezier(0.61, 0.03, 0.08, 0.99)
             both;
-    }
+    } */
 
     #company-container {
         transition: transform 700ms ease;
@@ -371,14 +369,13 @@ export const Empresas = [
         }
     }
 
-
-    .EmpDetalle {
+/*     .EmpDetalle {
         display: none;
         &.display-block {
             display: block;
-/*             width: 100vw;
+             width: 100vw;
             position: relative;
-             left: 80vw; */
+             left: 80vw;
         }
     }
 
@@ -393,13 +390,13 @@ export const Empresas = [
             -webkit-text-stroke-color: white;
             transform: translateX(160px);
         }
-    }
+    } */
 </style>
 
 <script>
-import { Empresas } from "./StockMarket.astro";
+    import { Empresas } from "./StockMarket.astro";
 
-     export let EmpresaActual = {}
+    export let EmpresaActual = {};
 
     const $container = document.querySelector(
         "#company-container",
@@ -407,13 +404,14 @@ import { Empresas } from "./StockMarket.astro";
     const $list = document.querySelector("#company-list") as HTMLElement;
     const $buttons = $list.querySelectorAll("button");
     const $closeButton = document.querySelector("#close-button") as HTMLElement;
-    const $ConteinerDetalle = document.querySelector(".EmpDetalle") as HTMLElement;
-
+    const $ConteinerDetalle = document.querySelector(
+        ".EmpDetalle",
+    ) as HTMLElement;
 
     $buttons.forEach((button, index) => {
         button.addEventListener("click", (e) => {
             EmpresaActual = Empresas[index];
-            console.log(EmpresaActual)
+            console.log(EmpresaActual);
             $container.classList.add("slide-in");
             $ConteinerDetalle.classList.add("display-block");
         });
@@ -423,6 +421,4 @@ import { Empresas } from "./StockMarket.astro";
         $container.classList.remove("slide-in");
         $ConteinerDetalle.classList.remove("display-block");
     });
-
-
 </script>

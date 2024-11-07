@@ -2,8 +2,8 @@
     display: none;
     &.display-block {
         display: block;
-        width: 100vw;
+        /*             width: 100vw;
         position: relative;
-         left: 80vw;
+         left: 80vw; */
     }
 }

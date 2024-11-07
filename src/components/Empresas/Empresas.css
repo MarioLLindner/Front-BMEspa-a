@@ -1,0 +1,40 @@
+.arrow {
+    transition:
+        transform 700ms,
+        color 700ms 700ms;
+}
+
+article:hover h3 {
+    animation: Empresas-nombre 1.5s cubic-bezier(0.61, 0.03, 0.08, 0.99)
+        both;
+}
+
+#company-container {
+    transition: transform 700ms ease;
+    &.slide-in {
+        transform: translateX(-100%);
+    }
+}
+
+.EmpDetalle {
+    display: none;
+    &.display-block {
+        display: block;
+        /*             width: 100vw;
+        position: relative;
+         left: 80vw; */
+    }
+}
+
+@keyframes Empresas-nombre {
+    50% {
+        transform: translateX(80px);
+    }
+
+    100% {
+        color: transparent;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: white;
+        transform: translateX(160px);
+    }
+}
