@@ -4,15 +4,17 @@ import './Empresas.css'
 
 export const ListaEmpresas = ({ empresas }) => {
     const [EmpresaActual, setEmpresaActual] = useState(null);
+    const [showingList, setShowingList] = useState(null)
 
     const HandleEmpresaClick = empresa => {
         setEmpresaActual(empresa)
         console.log("Empresa seleccionada:", empresa);
+        setShowingList(false)
     }
 
     return (
-        <div>
-            <div id="company-list" className="w-screen flex-shrink-0">
+        <div className="flex">
+            <div id="company-list" className={`w-screen flex-shrink-0 `}>
                 {
                     empresas.map((emp, index) => (
                         <div className="flex flex-row w-full justify-between">
@@ -59,8 +61,7 @@ export const ListaEmpresas = ({ empresas }) => {
                     ))
                 }
             </div>
-
-            {EmpresaActual && <CambiarNombre client:only = "react" Empresa={EmpresaActual} />}
+                <CambiarNombre Empresa={EmpresaActual} onClose={() => setEmpresaActual(null)}/>
         </div>
 
     )
