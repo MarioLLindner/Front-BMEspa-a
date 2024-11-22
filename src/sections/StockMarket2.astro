@@ -8,11 +8,12 @@ import { ListaEmpresas } from "@components/Empresas/Empresas";
 export const Empresas = [
     {
         Nombre: "Apple INC",
+        Abreviacion: 'AAPL',
         RefranEmpresa: "Think different",
         image: "/empresas/AppleStockMarquet.jpg",
         logo: "/logos/Apple INC.png",
         link: "www.apple.com",
-        actualidad: [
+        cotizaciones: [
             {
                 value: 0,
                 label: "Min",
@@ -43,11 +44,12 @@ export const Empresas = [
     },
     {
         Nombre: "Tesla INC",
+        Abreviacion: 'TSLA',
         RefranEmpresa: "The future is sustainable",
         image: "/empresas/TeslaStockMarquet.jpg",
         logo: "/empresas/Tesla INC.jpg",
-        link: "www.google.com",
-        actualidad: [
+        link: "https://www.tesla.com",
+        cotizaciones: [
             {
                 value: 0,
                 label: "Min",
@@ -78,11 +80,12 @@ export const Empresas = [
     },
     {
         Nombre: "JP Morgan",
+        Abreviacion: 'JPM',
         RefranEmpresa: "Working toward a stronger future.",
         image: "/empresas/JPMorganImage.jpg",
         logo: "/empresas/JPMorganImage.jpg",
         link: "https://www.jpmorgan.com/global",
-        actualidad: [
+        cotizaciones: [
             {
                 value: 0,
                 label: "Min",
@@ -113,11 +116,12 @@ export const Empresas = [
     },
     {
         Nombre: "Roche Holding",
+        Abreviacion: 'ROG.SW',
         RefranEmpresa: "Doing now what patients need next.",
         image: "/empresas/RocheHoldingImage.webp",
         logo: "/empresas/RocheHoldingImage.webp",
-        link: "Link de la Empresa",
-        actualidad: [
+        link: "https://www.roche.com",
+        cotizaciones: [
             {
                 value: 0,
                 label: "Min",
@@ -148,11 +152,12 @@ export const Empresas = [
     },
     {
         Nombre: "Shell plc",
+        Abreviacion: 'SHEL',
         RefranEmpresa: "Juntos, todo es posible",
         image: "/empresas/ShellplcImage.webp",
         logo: "/empresas/ShellplcLogo.png",
         link: "https://www.shell.com.ar/",
-        actualidad: [
+        cotizaciones: [
             {
                 value: 0,
                 label: "Min",
@@ -183,11 +188,12 @@ export const Empresas = [
     },
     {
         Nombre: "NVIDIA",
+        Abreviacion: 'NVDA',
         RefranEmpresa: "The way it's meant to be played",
         image: "/empresas/NVIDIAImage3.jpg",
         logo: "/empresas/NVIDIAImage.jpg",
-        link: "Link de la Empresa",
-        actualidad: [
+        link: "https://www.nvidia.com",
+        cotizaciones: [
             {
                 value: 0,
                 label: "Min",
@@ -218,11 +224,12 @@ export const Empresas = [
     },
     {
         Nombre: "Coca-Cola",
+        Abreviacion: 'KO',
         RefranEmpresa: "Taste the Feeling",
         image: "/empresas/CocaColaImage.jpg",
         logo: "/empresas/CocaColaLogo2.png",
-        link: "Link de la Empresa",
-        actualidad: [
+        link: "https://www.coca-cola.com",
+        cotizaciones: [
             {
                 value: 0,
                 label: "Min",
@@ -252,6 +259,11 @@ export const Empresas = [
         ],
     },
 ];
+
+const CodEmpresasjson = await fetch("http://localhost:8080/cotizaciones/BuscarMisEmpresas")
+const CodEmpresas = await CodEmpresasjson.json()
+console.log(CodEmpresas)
+const DataEmpresasjson = await fetch("http://localhost:8080/empresas/buscarEmpresaEnDBLocal/")
 ---
 
 <section>
@@ -260,7 +272,7 @@ export const Empresas = [
      -->
 
     <div id="company-container" class="flex bg-white z-10 relative">
-        <ListaEmpresas client:only = "react" empresas={Empresas}/>
+        <ListaEmpresas client:only = "react" empresas={Empresas} codEmpresas={CodEmpresas}/>
     </div>
 </section>
 

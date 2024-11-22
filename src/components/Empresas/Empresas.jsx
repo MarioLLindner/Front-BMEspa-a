@@ -2,15 +2,22 @@ import React, { useState } from "react"
 import {CambiarNombre} from "../CambiarNombre/CambiarNombre2.jsx";
 import './Empresas.css'
 
-export const ListaEmpresas = ({ empresas }) => {
+export const ListaEmpresas = ({ empresas, codEmpresas }) => {
     const [EmpresaActual, setEmpresaActual] = useState(null);
-    const [showingList, setShowingList] = useState(null)
 
-    const HandleEmpresaClick = empresa => {
+    const HandleEmpresaClick = async empresa => {
+        console.log("Empresa seleccionada:", empresa.Abreviacion);
+        const response = await fetch(`http://localhost:8080/Cotizaciones/filtrarCotdemiDB/${empresa.Abreviacion}`)
+        console.log(await response.json())
         setEmpresaActual(empresa)
-        console.log("Empresa seleccionada:", empresa);
         setShowingList(false)
-    }
+    };
+
+    const FindCotizations = async (Empresa) => {
+        console.log("Buscando Cotizaciones de: ",Empresa.Nombre)
+       
+        return data
+    };
 
     return (
         <div className="flex">
@@ -30,7 +37,7 @@ export const ListaEmpresas = ({ empresas }) => {
                                     opacity-0 transition-opacity duration-700 ease-proyect-timing 
                                     -z-10 absolute inset-0 delay-700  
                                      group-hover:opacity-100"
-                                        style={{ backgroundImage: `url(${emp.image})` }}
+                                        style={{ backgroundImage: `url(${emp.image})`}}
                                     />
                                     <div className="py-8">
                                         <h3 className="uppercase tracking-tighter text-8xl font-bold">
@@ -61,7 +68,7 @@ export const ListaEmpresas = ({ empresas }) => {
                     ))
                 }
             </div>
-                <CambiarNombre Empresa={EmpresaActual} onClose={() => setEmpresaActual(null)}/>
+                <CambiarNombre Empresa={EmpresaActual} onClick={() => FindCotizations(EmpresaActual.Abreviacion)} onClose={() => setEmpresaActual(null)}/>
         </div>
 
     )

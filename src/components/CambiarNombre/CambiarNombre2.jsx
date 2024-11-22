@@ -5,16 +5,18 @@ import './CambiarNombre2.css'
 
 
 export const CambiarNombre = ({ Empresa, onClose}) => {
+
     
+
     return (
 
         <article
-            className={`EmpDetalle ${Empresa ? "display-block" : "display-none"} border-black border-y-2 relative flex-row h-full w-screen flex-shrink-0`}
+            className={`EmpDetalle ${Empresa ? "display-block" : "hidden"} border-black border-y-2 relative flex-row h-full w-screen flex-shrink-0`}
         >
-            <div className="w-[55%] h-full">
+            <div className="w-[100%] h-full">
                 <button
                     id="close-button"
-                    className="absolute top-4 left-4 bg-red-500 text-white py-2 px-4 rounded-full font-bold"
+                    className="absolute top-4 left-6 bg-red-500 text-white py-2 px-4 rounded-full font-bold"
                     onClick={onClose}
                 >
                     Cerrar
@@ -43,8 +45,5 @@ export const CambiarNombre = ({ Empresa, onClose}) => {
                     </a>
                 </footer>
             </div>
-            <figure className="w-[30%] h-full">
-            <img className="h-full max-h-[968px] max-w-[865px]" src={Empresa?.image} alt={Empresa?.Nombre}/>
-            </figure>
         </article>)
 } 
