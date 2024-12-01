@@ -1,5 +1,6 @@
 ---
-import Header from '@components/HeaderComp.astro';
+import Header from "@components/HeaderComp.astro";
+import Footer from "@sections/Footer.astro";
 
 interface Props {
 	description: string;
@@ -10,7 +11,7 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html >
 	<head>
 		<meta charset="UTF-8" />
 		<title>{title}</title>
@@ -20,33 +21,36 @@ const { title, description } = Astro.props;
 	</head>
 	<body>
 		<Header />
-		<slot />
+		<div class="min-h-screen bg-gray-100 flex flex-col">
+			<slot />
+			<Footer />
+		</div>
 	</body>
+	<style is:global>
+		@font-face {
+			font-family: "Space Grotesk";
+			src: url("/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("ttf");
+			font-weight: 100 900;
+			font-style: normal;
+			font-display: swap;
+		}
+		@font-face {
+			font-family: "Trois Mille";
+			src: url("fonts/Trois Mille TRIAL Bold 15.woff2") format("woff2");
+			font-weight: 700;
+			font-style: normal;
+			font-display: swap;
+		}
+		@font-face {
+			font-family: "Trois Mille";
+			src: url("fonts/Trois Mille TRIAL Black 15.woff2") format("woff2");
+			font-weight: 900;
+			font-style: normal;
+			font-display: swap;
+		}
+		html {
+			font-family: system-ui, sans-serif;
+			background: #fff;
+		}
+	</style>
 </html>
-<style is:global>
-	@font-face {
-		font-family: "Space Grotesk";
-		src: url('/fonts/SpaceGrotesk-VariableFont_wght.ttf') format('ttf');
-		font-weight: 100 900;
-		font-style: normal;
-		font-display: swap;
-	}
-	@font-face {
-		font-family: 'Trois Mille';
-		src: url('fonts/Trois Mille TRIAL Bold 15.woff2') format('woff2');
-		font-weight: 700;
-		font-style: normal;
-		font-display: swap;
-	}
-	@font-face {
-		font-family: 'Trois Mille';
-		src: url('fonts/Trois Mille TRIAL Black 15.woff2') format('woff2');
-		font-weight: 900;
-		font-style: normal;
-		font-display: swap;
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #FFF;
-	}
-</style>

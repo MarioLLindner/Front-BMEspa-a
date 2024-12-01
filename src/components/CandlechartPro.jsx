@@ -3,8 +3,13 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
-const CandleChartPro = () => {
+const CandleChartPro = ({indices}) => {
+/* 
+  console.log(indices) */
+  
+  
   useLayoutEffect(() => {
+    if(indices?.length > 0) {
     // Create root element
     let root = am5.Root.new("chartdiv");
 
@@ -27,32 +32,18 @@ const CandleChartPro = () => {
 
     // Generate chart data
     function generateChartData() {
-      let chartData = [];
-      let firstDate = new Date();
-      firstDate.setDate(firstDate.getDate() - 1000);
-      firstDate.setHours(0, 0, 0, 0);
-      let value = 1200;
-      for (let i = 0; i < 1000; i++) {
-        let newDate = new Date(firstDate);
-        newDate.setDate(newDate.getDate() + i);
-
-        value += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-        let open = value + Math.round(Math.random() * 16 - 7);
-        let low = Math.min(value, open) - Math.round(Math.random() * 5);
-        let high = Math.max(value, open) + Math.round(Math.random() * 5);
-
-        chartData.push({
-          date: newDate.getTime(),
-          value: value,
-          open: open,
-          low: low,
-          high: high
-        });
-      }
+      const chartData = indices.map(indice => ({
+        date: new Date(indice.fecha + ' ' + indice.hora).getTime(),
+        value: parseFloat(indice.valor),
+        open: parseFloat(indice.valor), // Puedes ajustar esto si necesitas otro valor
+        low: parseFloat(indice.valor) - 1, // Aquí puedes definir cómo calcular el low
+        high: parseFloat(indice.valor) + 1 // Aquí puedes definir cómo calcular el high
+      }));
       return chartData;
-    }
+      }
 
-    let data = generateChartData();
+    const data = generateChartData();
+/*     console.log(data) */
 
     // Create chart
     let chart = root.container.children.push(
@@ -219,12 +210,12 @@ const CandleChartPro = () => {
     // Animate on load
     series.appear(1000);
     chart.appear(1000, 100);
-
+  }
     // Clean up on component unmount
     return () => {
       root.dispose();
     };
-  }, []);
+  }, [indices]);
 
   return <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>;
 };

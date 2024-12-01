@@ -1,30 +1,34 @@
-import React, { useState } from "react"
+import { useEffect, useState } from "react"
 import {CambiarNombre} from "../CambiarNombre/CambiarNombre2.jsx";
 import './Empresas.css'
 
-export const ListaEmpresas = ({ empresas, codEmpresas }) => {
+export const ListaEmpresas = ({ empresas }) => {
     const [EmpresaActual, setEmpresaActual] = useState(null);
+    const [EmpresaCotizaciones, setEmpresaCotizaciones] = useState(null)
 
     const HandleEmpresaClick = async empresa => {
-        console.log("Empresa seleccionada:", empresa.Abreviacion);
-        const response = await fetch(`http://localhost:8080/Cotizaciones/filtrarCotdemiDB/${empresa.Abreviacion}`)
-        console.log(await response.json())
+        const response = await fetch(`http://localhost:8080/Cotizaciones/filtrarCotdemiDB/${empresa?.Abreviacion}`)
+        setEmpresaCotizaciones(await response.json())
         setEmpresaActual(empresa)
-        setShowingList(false)
+        const divPadre = document.querySelector("#company-container");
+        divPadre.classList.add("slide-in");
     };
 
-    const FindCotizations = async (Empresa) => {
-        console.log("Buscando Cotizaciones de: ",Empresa.Nombre)
-       
-        return data
-    };
+    const CloseArticle=(params) =>  {
+        setEmpresaActual(null)
+        setEmpresaCotizaciones(null)
+        const divPadre = document.querySelector("#company-container");
+        divPadre.classList.remove("slide-in");
+    }
+
+
 
     return (
         <div className="flex">
             <div id="company-list" className={`w-screen flex-shrink-0 `}>
                 {
                     empresas.map((emp, index) => (
-                        <div className="flex flex-row w-full justify-between">
+                        <div key={index} className="flex flex-row w-full justify-between">
                             <article className="relative border-t-2 last:border-b-2 border-black w-full">
                                 <button
                                     data-id={index}
@@ -68,7 +72,7 @@ export const ListaEmpresas = ({ empresas, codEmpresas }) => {
                     ))
                 }
             </div>
-                <CambiarNombre Empresa={EmpresaActual} onClick={() => FindCotizations(EmpresaActual.Abreviacion)} onClose={() => setEmpresaActual(null)}/>
+                <CambiarNombre Empresa={EmpresaActual} cotizaciones={EmpresaCotizaciones} onClose={CloseArticle}/>
         </div>
 
     )

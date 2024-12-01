@@ -4,9 +4,9 @@ import { CompanyDetailsInfoReact } from "@components/CompanyDetailsInfo";
 import './CambiarNombre2.css'
 
 
-export const CambiarNombre = ({ Empresa, onClose}) => {
+export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
 
-    
+    /* console.log("cotizacionesen cambiarNombre: ", cotizaciones,Empresa) */
 
     return (
 
@@ -25,7 +25,11 @@ export const CambiarNombre = ({ Empresa, onClose}) => {
                     <h2
                         className="text-7xl font-bold uppercase mb-12 tracking-tighter"
                     >
-                        <CandleChartProEmpresas divID={Empresa?.Nombre} />
+                       {cotizaciones && cotizaciones.length > 0 ? (
+                            <CandleChartProEmpresas divID={Empresa?.Nombre} cotizaciones={cotizaciones} />
+                        ) : (
+                            <p>No hay datos disponibles para mostrar el gráfico.</p>
+                        )}
                     </h2>
                 </header>
                 <footer
@@ -33,10 +37,10 @@ export const CambiarNombre = ({ Empresa, onClose}) => {
                 >
                     <div className="p-2">
                         <div className="grid grid-cols-4 gap-16 text-center">
-                            <CompanyDetailsInfoReact label="Max" value="15" />
-                            <CompanyDetailsInfoReact label="Min" value="15" />
-                            <CompanyDetailsInfoReact label="%" value="15" />
-                            <CompanyDetailsInfoReact label="Value" value="15" />
+                            <CompanyDetailsInfoReact label={Empresa?.info[0].label} value={Empresa?.info[0].value} />
+                            <CompanyDetailsInfoReact label={Empresa?.info[1].label} value={Empresa?.info[1].value} />
+                            <CompanyDetailsInfoReact label={Empresa?.info[2].label} value={Empresa?.info[2].value} />
+                            <CompanyDetailsInfoReact label={Empresa?.info[3].label} value={Empresa?.info[3].value} />
                         </div>
                     </div>
                     <a

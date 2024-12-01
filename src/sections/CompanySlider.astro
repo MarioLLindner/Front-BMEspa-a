@@ -1,623 +1,168 @@
 ---
 import "node_modules/@glidejs/glide/dist/css/glide.core.min.css";
-import CandlestickChart from "@components/Candlechart.jsx";
 import CandleChartPro from "@components/CandlechartPro";
+import BodyIndices from "@components/GraficoChartJs/ContainerGraficoIndices";
 
 export const IndiceBursatil = [
 
     {
-        Nombre: "Bolsa de Toronto",
-        logo: "logos/BolsadeToronto.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Bolsa de Nueva York",
-        logo: "logos/BolsadeNuevaYork.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },{
-        Nombre: "XU100",
+        Nombre: "",
+        Abreviacion: "",
         logo: "logos/XU100.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
+        valor: []
     },
     {
-        Nombre: "S&P Merval",
-        logo: "logos/S&PMerval.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Bovespa",
-        logo: "logos/Bovespa.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Nasdaq",
-        logo: "logos/Nasdaq.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "BME",
+        Nombre: "",
+        Abreviacion: "",
         logo: "logos/BME.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 11.2
-            },
-            {
-                Hora: "10:00",
-                value: 11.3
-            },
-            {
-                Hora: "11:00",
-                value: 11.3
-            },
-            {
-                Hora: "12:00",
-                value: 11.2
-            },
-            {
-                Hora: "13:00",
-                value: 11.1
-            },
-            {
-                Hora: "14:00",
-                value: 11
-            },
-            {
-                Hora: "15:00",
-                value: 10.9
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Tokio",
-        logo: "logos/Tokio.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Shangai",
-        logo: "logos/Shangai.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Londres",
-        logo: "logos/Londres.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Euronext",
-        logo: "logos/Euronext.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Paris",
-        logo: "logos/Paris.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "FrancFort",
-        logo: "logos/FrancFort.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "ASX",
-        logo: "logos/ASX.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Bolsa Italiana",
-        logo: "logos/BolsaItaliana.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
-    },
-    {
-        Nombre: "Oslo",
+        valor: []
+    },{
+        Nombre: "",
+        Abreviacion: "",
         logo: "logos/Oslo.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
+        valor: []
     },
     {
-        Nombre: "MOEX",
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/FrancFort.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Bovespa.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
         logo: "logos/Moex.png",
-        valor: [
-            {
-                Hora: "09:00",
-                value: 5.2
-            },
-            {
-                Hora: "10:00",
-                value: 5.4
-            },
-            {
-                Hora: "11:00",
-                value: 5.5
-            },
-            {
-                Hora: "12:00",
-                value: 5.6
-            },
-            {
-                Hora: "13:00",
-                value: 5.4
-            },
-            {
-                Hora: "14:00",
-                value: 5.5
-            },
-            {
-                Hora: "15:00",
-                value: 5.5
-            },
-            
-        ]
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Euronext.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Tokio.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/BolsadeToronto.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Londres.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Euronext.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Paris.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/FrancFort.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/ASX.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/BolsaItaliana.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Bovespa.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Moex.png",
+        valor: []
     }
 ]
+
+const CodIndicesjson = await fetch("http://localhost:8080/cotizacionIndice/BuscarMisIndices")
+const CodIndices = await CodIndicesjson.json()
+
+IndiceBursatil.forEach((Indice, index) => {
+    if (CodIndices[index]) {
+        Indice.Abreviacion = CodIndices[index]; // Asignar el código a la posición correspondiente
+    }
+});
+
+const fetchPromises = IndiceBursatil.map(async (indice) => {
+    if (indice.Abreviacion) {
+        const response = await fetch(`http://localhost:8080/indices/Detalles/${indice.Abreviacion}`);
+        const data = await response.json();
+        if (data.codigoIndice === indice.Abreviacion) {
+            indice.Nombre = data.nombreIndice;
+            ;}
+        return data; // Puedes almacenar los datos si los necesitas
+    } else {
+        /* console.warn(`La empresa ${indice.Nombre} no tiene una Abreviacion asignada.`); */
+        return null;
+    }
+});
+const resultados = await Promise.all(fetchPromises)
+
+
+const fetchPromises2 = IndiceBursatil.map(async (indice) => {
+    if (indice.Abreviacion) {
+        const response = await fetch(`http://localhost:8080/cotizacionIndice/filtrarCotdemiDB/${indice?.Abreviacion}`);
+        const data = await response.json();
+            indice.valor = data;
+        return data; // Puedes almacenar los datos si los necesitas
+    } else {
+        console.warn(`La empresa ${indice.Nombre} no tiene una Abreviacion asignada.`);
+        return null;
+    }
+});
+const resultados2 = await Promise.all(fetchPromises2)
+
 ---
 
 
 
-<section class="border-b-[60px] border-lime-400 mb-48">
-    <!-- <CompanySliderComp class="scale-105" image="Empresas1" title="Empresas" /> -->
+<section class="border-b-[60px] border-lime-400 ">
 
     <div id="indices-slider" class="glide">
         <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides bg-lime-400">
                 {
-                    IndiceBursatil.map((emp, index) => (
+                    IndiceBursatil.map((ind, index) => (
                         <li class="glide_slide">
                             <button data-slide={index}>
                                 <img
                                     class="inline-flex aspect-[160/100] h-full w-full object-top object-cover"
-                                    src={emp.logo}
-                                    alt={emp.Nombre}
+                                    src={ind.logo}
+                                    alt={ind.Nombre}
                                 />
                             </button>
                         </li>
@@ -627,8 +172,7 @@ export const IndiceBursatil = [
         </div>
     </div>
     <article class="aspect-[23/9] bg-white">
-<!--          <CandlestickChart client:only = "react" /> -->
-         <CandleChartPro client:only = "react"/>
+        <BodyIndices client:only="react" ArrayIndices={IndiceBursatil}/>
     </article>
 </section>
 
@@ -651,7 +195,7 @@ export const IndiceBursatil = [
         type: "carousel",
         gap: 0,
         focusAt: "center",
-        startAt: 6,
+        startAt: 1,
         perView: 12,
     }).mount();
 

@@ -9,7 +9,7 @@ article:hover h3 {
         both;
 }
 
-#company-container {
+#company-list {
     transition: transform 700ms ease;
     &.slide-in {
         transform: translateX(-100%);
@@ -20,9 +20,6 @@ article:hover h3 {
     display: none;
     &.display-block {
         display: block;
-        /*             width: 100vw;
-        position: relative;
-         left: 80vw; */
     }
 }
 

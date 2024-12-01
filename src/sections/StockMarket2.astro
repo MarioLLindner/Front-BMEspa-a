@@ -1,32 +1,18 @@
 ---
-import CandleChartProEmpresas from "@components/Candlechart";
-import CompanyDetailsInfo from "@components/CompanyDetailsInfo.astro";
-import CompanySliderComp from "@components/CompanySliderComp.astro";
-import CambiarNombre from "@components/CambiarNombre.astro";
-import EmpresaActual from "./StockMarket2.astro";
 import { ListaEmpresas } from "@components/Empresas/Empresas";
+import ParticipacionDeEmpresas from "@components/ParticipacionDeEmpresas/ParticipacionDeEmpresas";
+import { Texto } from "@components/Textos/Texto";
+
 export const Empresas = [
     {
-        Nombre: "Apple INC",
-        Abreviacion: 'AAPL',
+        Nombre: "",
+        Abreviacion: "",
         RefranEmpresa: "Think different",
         image: "/empresas/AppleStockMarquet.jpg",
         logo: "/logos/Apple INC.png",
         link: "www.apple.com",
-        cotizaciones: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
-            {
-                value: 0.8,
-                Label: "Actual",
-            },
-        ],
+        cantidadAcciones: 0,
+        cotizaciones: [],
         info: [
             {
                 value: 0,
@@ -40,65 +26,21 @@ export const Empresas = [
                 value: 0.8,
                 Label: "Actual",
             },
-        ],
-    },
-    {
-        Nombre: "Tesla INC",
-        Abreviacion: 'TSLA',
-        RefranEmpresa: "The future is sustainable",
-        image: "/empresas/TeslaStockMarquet.jpg",
-        logo: "/empresas/Tesla INC.jpg",
-        link: "https://www.tesla.com",
-        cotizaciones: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
             {
                 value: 0.8,
-                Label: "Actual",
-            },
-        ],
-        info: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
-            {
-                value: 0.8,
-                Label: "Actual",
+                Label: "Fluctuacion",
             },
         ],
     },
     {
-        Nombre: "JP Morgan",
-        Abreviacion: 'JPM',
+        Nombre: "",
+        Abreviacion: "",
         RefranEmpresa: "Working toward a stronger future.",
         image: "/empresas/JPMorganImage.jpg",
         logo: "/empresas/JPMorganImage.jpg",
-        link: "https://www.jpmorgan.com/global",
-        cotizaciones: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
-            {
-                value: 0.8,
-                Label: "Actual",
-            },
-        ],
+        link: "https://www.jpmorgan.com/global", 
+        cantidadAcciones: 0,
+        cotizaciones: [],
         info: [
             {
                 value: 0,
@@ -112,29 +54,21 @@ export const Empresas = [
                 value: 0.8,
                 Label: "Actual",
             },
+            {
+                value: 0.8,
+                Label: "Fluctuacion",
+            },
         ],
     },
     {
-        Nombre: "Roche Holding",
-        Abreviacion: 'ROG.SW',
-        RefranEmpresa: "Doing now what patients need next.",
-        image: "/empresas/RocheHoldingImage.webp",
-        logo: "/empresas/RocheHoldingImage.webp",
-        link: "https://www.roche.com",
-        cotizaciones: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
-            {
-                value: 0.8,
-                Label: "Actual",
-            },
-        ],
+        Nombre: "",
+        Abreviacion: "",
+        RefranEmpresa: "Taste the Feeling",
+        image: "/empresas/CocaColaImage.jpg",
+        logo: "/empresas/CocaColaLogo2.png",
+        link: "https://www.coca-cola.com", 
+        cantidadAcciones: 0,
+        cotizaciones: [],
         info: [
             {
                 value: 0,
@@ -148,65 +82,21 @@ export const Empresas = [
                 value: 0.8,
                 Label: "Actual",
             },
-        ],
-    },
-    {
-        Nombre: "Shell plc",
-        Abreviacion: 'SHEL',
-        RefranEmpresa: "Juntos, todo es posible",
-        image: "/empresas/ShellplcImage.webp",
-        logo: "/empresas/ShellplcLogo.png",
-        link: "https://www.shell.com.ar/",
-        cotizaciones: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
             {
                 value: 0.8,
-                Label: "Actual",
-            },
-        ],
-        info: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
-            {
-                value: 0.8,
-                Label: "Actual",
+                Label: "Fluctuacion",
             },
         ],
     },
     {
-        Nombre: "NVIDIA",
-        Abreviacion: 'NVDA',
+        Nombre: "",
+        Abreviacion: "",
         RefranEmpresa: "The way it's meant to be played",
         image: "/empresas/NVIDIAImage3.jpg",
         logo: "/empresas/NVIDIAImage.jpg",
         link: "https://www.nvidia.com",
-        cotizaciones: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
-            {
-                value: 0.8,
-                Label: "Actual",
-            },
-        ],
+        cantidadAcciones: 0,
+        cotizaciones: [],
         info: [
             {
                 value: 0,
@@ -219,30 +109,22 @@ export const Empresas = [
             {
                 value: 0.8,
                 Label: "Actual",
+            },
+            {
+                value: 0.8,
+                Label: "Fluctuacion",
             },
         ],
     },
     {
-        Nombre: "Coca-Cola",
-        Abreviacion: 'KO',
-        RefranEmpresa: "Taste the Feeling",
-        image: "/empresas/CocaColaImage.jpg",
-        logo: "/empresas/CocaColaLogo2.png",
-        link: "https://www.coca-cola.com",
-        cotizaciones: [
-            {
-                value: 0,
-                label: "Min",
-            },
-            {
-                value: 1,
-                label: "Max",
-            },
-            {
-                value: 0.8,
-                Label: "Actual",
-            },
-        ],
+        Nombre: "",
+        Abreviacion: "",
+        RefranEmpresa: "Doing now what patients need next.",
+        image: "/empresas/RocheHoldingImage.webp",
+        logo: "/empresas/RocheHoldingImage.webp",
+        link: "https://www.roche.com",
+        cantidadAcciones: 0,
+        cotizaciones: [],
         info: [
             {
                 value: 0,
@@ -255,72 +137,134 @@ export const Empresas = [
             {
                 value: 0.8,
                 Label: "Actual",
+            },
+            {
+                value: 0.8,
+                Label: "Fluctuacion",
+            },
+        ],
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        RefranEmpresa: "Juntos, todo es posible",
+        image: "/empresas/ShellplcImage.webp",
+        logo: "/empresas/ShellplcLogo.png",
+        link: "https://www.shell.com.ar/",
+        cantidadAcciones: 0,
+        cotizaciones: [],
+        info: [
+            {
+                value: 0,
+                label: "Min",
+            },
+            {
+                value: 1,
+                label: "Max",
+            },
+            {
+                value: 0.8,
+                Label: "Actual",
+            },
+            {
+                value: 0.8,
+                Label: "Fluctuacion",
+            },
+        ],
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        RefranEmpresa: "The future is sustainable",
+        image: "/empresas/TeslaStockMarquet.jpg",
+        logo: "/empresas/Tesla INC.jpg",
+        link: "https://www.tesla.com",
+        cantidadAcciones: 0,
+        cotizaciones: [],
+        info: [
+            {
+                value: 0,
+                label: "Min",
+            },
+            {
+                value: 1,
+                label: "Max",
+            },
+            {
+                value: 0.8,
+                Label: "Actual",
+            },
+            {
+                value: 0.8,
+                Label: "Fluctuacion",
             },
         ],
     },
 ];
 
-const CodEmpresasjson = await fetch("http://localhost:8080/cotizaciones/BuscarMisEmpresas")
-const CodEmpresas = await CodEmpresasjson.json()
-console.log(CodEmpresas)
-const DataEmpresasjson = await fetch("http://localhost:8080/empresas/buscarEmpresaEnDBLocal/")
+const CodEmpresasjson = await fetch(
+    "http://localhost:8080/cotizaciones/BuscarMisEmpresas",
+);
+const CodEmpresas = await CodEmpresasjson.json();
+Empresas.forEach((empresa, index) => {
+    if (CodEmpresas[index]) {
+        empresa.Abreviacion = CodEmpresas[index]; // Asignar el código a la posición correspondiente
+    }
+});
+
+const fetchPromises = Empresas.map(async (empresa) => {
+    if (empresa.Abreviacion) {
+        const response = await fetch(
+            `http://localhost:8080/empresas/${empresa?.Abreviacion}`,
+        );
+        const data = await response.json();
+        if (data.codempresa === empresa.Abreviacion) {
+            empresa.Nombre = data.empresaNombre; // Actualiza el nombre
+            empresa.cantidadAcciones = data.cantidadAcciones;
+        }
+       /*  console.log(Empresas); */
+        return data; // Puedes almacenar los datos si los necesitas
+    } else {
+        console.warn(
+            `La empresa ${empresa.Nombre} no tiene una Abreviacion asignada.`,
+        );
+        return null;
+    }
+});
+const resultados = await Promise.all(fetchPromises);
+
 ---
 
-<section>
-    <!--    
-        <CompanySliderComp image="Empresas1" title="Empresas" />
-     -->
+<section  class="border-b-[60px] border-lime-400">
 
-    <div id="company-container" class="flex bg-white z-10 relative">
-        <ListaEmpresas client:only = "react" empresas={Empresas} codEmpresas={CodEmpresas}/>
+    <div id="company-container" class="flex bg-white z-10 relative border-b-[60px] border-lime-400">
+        <ListaEmpresas client:only="react" empresas={Empresas} />
+    </div>
+    <div class="flex bg-white z-10 relative flex-col pr-[60px] pl-[60px] border-lime-400">
+        <div class="flex items-center justify-center uppercase tracking-tighter text-8xl font-bold">
+            <!-- <a>{t('participacion')}</a> -->
+            <Texto client:only="react" props="participacion"/>
+        </div>
+        <div class="">
+            <ParticipacionDeEmpresas client:only="react" empresas={Empresas}/>
+        </div>
     </div>
 </section>
 
 <style>
-/*     .arrow {
-        transition:
-            transform 700ms,
-            color 700ms 700ms;
-    }
-
-    article:hover h3 {
-        animation: Empresas-nombre 1.5s cubic-bezier(0.61, 0.03, 0.08, 0.99)
-            both;
-    } */
 
     #company-container {
         transition: transform 700ms ease;
         &.slide-in {
-            transform: translateX(-100%);
+            transform: translateX(-102%);
         }
     }
 
-/*     .EmpDetalle {
-        display: none;
-        &.display-block {
-            display: block;
-             width: 100vw;
-            position: relative;
-             left: 80vw;
-        }
-    }
-
-    @keyframes Empresas-nombre {
-        50% {
-            transform: translateX(80px);
-        }
-
-        100% {
-            color: transparent;
-            -webkit-text-stroke-width: 2px;
-            -webkit-text-stroke-color: white;
-            transform: translateX(160px);
-        }
-    } */
 </style>
 
 <script>
-    import { Empresas } from "./StockMarket.astro";
+import { Empresas } from "./StockMarket2.astro";
+
 
     export let EmpresaActual = {};
 

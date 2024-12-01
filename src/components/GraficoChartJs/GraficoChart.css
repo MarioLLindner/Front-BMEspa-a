@@ -1,0 +1,122 @@
+/* General */
+.body-indices-container {
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.body-indices-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.selector-buttons-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.selector-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.selector-button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.selector-button.inactive {
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+.selector-button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.index-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.index-button {
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: 2px solid transparent;
+}
+
+
+.index-button.inactive {
+  background-color: lightgray;
+}
+
+.index-button:hover {
+  transform: scale(1.05);
+}
+
+.chart-container {
+  width: 100%; /* Se extiende a todo el ancho disponible */
+  margin: 20px auto; /* Centrado */
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+}
+
+.chart-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.navigation-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.navigation-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.navigation-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 16px;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  color: #6c757d;
+}
