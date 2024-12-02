@@ -9,12 +9,8 @@ interface Empresa {
     cantidadAcciones: string;
   }
   
-  interface PieChartComponentProps {
-    empresas: Empresa[];
-  }
 
-
-  const PieChartComponent: React.FC<PieChartComponentProps> = ({ empresas }) => {
+  const PieChartComponent = ({ empresas }:any) => {
     useLayoutEffect (() => {
         console.log("Empresas",empresas)
     // Create root element
@@ -42,7 +38,7 @@ interface Empresa {
     );
 
     // Map empresas data to match chart's expected format
-    const chartData = empresas.map((empresa) => ({
+    const chartData = empresas.map((empresa:any) => ({
         country: empresa.Nombre,
         sales: parseFloat(empresa.cantidadAcciones), // Convertir cantidadAcciones a número
       }));

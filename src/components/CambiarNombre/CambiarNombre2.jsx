@@ -1,4 +1,4 @@
-
+"use client";
 import CandleChartProEmpresas from "@components/Candlechart";
 import { CompanyDetailsInfoReact } from "@components/CompanyDetailsInfo";
 import './CambiarNombre2.css'
@@ -6,7 +6,26 @@ import './CambiarNombre2.css'
 
 export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
 
-    /* console.log("cotizacionesen cambiarNombre: ", cotizaciones,Empresa) */
+    console.log("cotizacionesen cambiarNombre: ", cotizaciones)
+
+    const valores = Array.isArray(cotizaciones)
+        ? cotizaciones
+            .filter(c => c?.cotizacion !== undefined)
+            .map(c => parseFloat(c.cotizacion))
+        : [];
+
+    // Calcular valores requeridos si existen datos
+    const valorMaximo = valores.length > 0 ? Math.max(...valores) : 0;
+    const valorMinimo = valores.length > 0 ? Math.min(...valores) : 0;
+    const ultimoValor = valores.length > 0 ? valores[valores.length - 1] : 0;
+    const porcentajeFluctuacion =
+        valorMinimo > 0
+            ? ((valorMaximo - valorMinimo) / valorMinimo) * 100
+            : 0;
+    console.log("Porcentaje de Fluctuación:", porcentajeFluctuacion.toFixed(2) + "%");
+
+    
+    const fluctuacionFiltrada = porcentajeFluctuacion.toFixed(2)
 
     return (
 
@@ -25,7 +44,7 @@ export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
                     <h2
                         className="text-7xl font-bold uppercase mb-12 tracking-tighter"
                     >
-                       {cotizaciones && cotizaciones.length > 0 ? (
+                        {cotizaciones && cotizaciones.length > 0 ? (
                             <CandleChartProEmpresas divID={Empresa?.Nombre} cotizaciones={cotizaciones} />
                         ) : (
                             <p>No hay datos disponibles para mostrar el gráfico.</p>
@@ -37,10 +56,23 @@ export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
                 >
                     <div className="p-2">
                         <div className="grid grid-cols-4 gap-16 text-center">
-                            <CompanyDetailsInfoReact label={Empresa?.info[0].label} value={Empresa?.info[0].value} />
-                            <CompanyDetailsInfoReact label={Empresa?.info[1].label} value={Empresa?.info[1].value} />
-                            <CompanyDetailsInfoReact label={Empresa?.info[2].label} value={Empresa?.info[2].value} />
-                            <CompanyDetailsInfoReact label={Empresa?.info[3].label} value={Empresa?.info[3].value} />
+                            <CompanyDetailsInfoReact label={Empresa?.info[1].label} value={valorMaximo} />
+                            <CompanyDetailsInfoReact label={Empresa?.info[0].label} value={valorMinimo} />
+                            <CompanyDetailsInfoReact label={Empresa?.info[2].label} value={ultimoValor} />
+                            <CompanyDetailsInfoReact
+                                label={
+                                    <>
+                                        % de Fluctuación
+                                        {porcentajeFluctuacion !== 0 && (
+                                            <span
+                                                className={`ml-2 font-bold ${porcentajeFluctuacion > 0 ? "text-red-500" : "text-green-500"
+                                                    }`}
+                                            >
+                                                {porcentajeFluctuacion > 0 ? "▼" : "▲"}
+                                            </span>
+                                        )}
+                                    </>
+                                } value={fluctuacionFiltrada} />
                         </div>
                     </div>
                     <a

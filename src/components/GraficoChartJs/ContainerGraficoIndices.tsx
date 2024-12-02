@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-/* import './GraficoChart.css'; */
 import GraficoSelector from './graficoSelector';
 import GraficoCotizacionesIndices from './GraficoChartJ';
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from '@components/lenguageSwitcher/lenguageSwitcher';
 import '../../i18n';
 
 interface iIndice {
@@ -19,7 +17,6 @@ interface BodyIndicesProps {
 
 const BodyIndices: React.FC<BodyIndicesProps> = ({ ArrayIndices }) => {
     const { t, i18n } = useTranslation();
-    /* console.log(ArrayIndices) */
 
     const [selectedIndices, setSelectedIndices] = useState<string[]>(['BME']);
     const [tipoGrafico, setTipoGrafico] = useState<'diario' | 'mensual' | 'anual'>('mensual');
@@ -93,9 +90,10 @@ const BodyIndices: React.FC<BodyIndicesProps> = ({ ArrayIndices }) => {
     };
 
     const cambiarMes = (incremento: number) => {
-        const nuevaFecha = new Date(mesSeleccionado + '-01');
-        nuevaFecha.setMonth(nuevaFecha.getMonth() + incremento);
-        setMesSeleccionado(nuevaFecha.toISOString().split('T')[0].slice(0, 7));
+        const [year, month] = mesSeleccionado.split('-').map(Number);
+        const nuevaFecha = new Date(year, month - 1 + incremento); // Manipula directamente mes y año
+        const nuevoMes = nuevaFecha.toISOString().slice(0, 7); // Asegura el formato 'YYYY-MM'
+        setMesSeleccionado(nuevoMes);
     };
 
     const toggleIndice = (indice: string) => {
@@ -109,7 +107,6 @@ const BodyIndices: React.FC<BodyIndicesProps> = ({ ArrayIndices }) => {
 
     return (
         <>
-        <LanguageSwitcher/>
         <div className="max-w-[95%] mx-auto p-5 bg-white rounded-lg shadow-md">
         <h1 className="text-center font-bold text-2xl mb-5">{t('body_indices.title')}</h1>
             <GraficoSelector tipoGrafico={tipoGrafico} setTipoGrafico={setTipoGrafico} />

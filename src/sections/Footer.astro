@@ -1,4 +1,6 @@
 ---
+import LanguageSwitcher from "@components/lenguageSwitcher/lenguageSwitcher";
+import { Texto } from "@components/Textos/Texto";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const companies = [
@@ -37,7 +39,7 @@ const exchanges = [
       <!-- Company List -->
       <div class="mb-8">
         <h3 class="text-lg font-semibold mb-3 text-gray-100">
-          Listed Companies
+          <Texto client:only="react" props="ListadeCompanias"/>
         </h3>
         <ul class="grid grid-cols-2 md:grid-cols-3 gap-2">
           {
@@ -53,7 +55,7 @@ const exchanges = [
       <!-- Global Exchanges -->
       <div class="mb-8">
         <h3 class="text-lg font-semibold mb-3 text-gray-100">
-          Global Exchange Network
+          <Texto client:only="react" props="GlobalExchangeNetwork"/>
         </h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
           {
@@ -69,13 +71,15 @@ const exchanges = [
       <!-- Contact Information -->
       <div class="mb-8">
         <h3 class="text-lg font-semibold mb-3 text-gray-100">
-          Contact Information
+          <Texto client:only="react" props="ContactInformation"/>
         </h3>
         <div class="space-y-2">
           <div class="flex items-center gap-2 text-gray-300">
             <MapPin className="w-4 h-4" />
             <span class="text-sm"
-              >Plaza de la Lealtad, 1, 28014 Madrid, Spain</span
+              >Plaza de la Lealtad, 1, 28014 
+              <Texto client:only="react" props="MadridSpain"/>
+              </span
             >
           </div>
           <div class="flex items-center gap-2 text-gray-300">
@@ -88,7 +92,9 @@ const exchanges = [
           </div>
           <div class="flex items-center gap-2 text-gray-300">
             <Clock className="w-4 h-4" />
-            <span class="text-sm">Trading Hours: 09:00 - 17:30 CET</span>
+            <span class="text-sm">
+              <Texto client:only="react" props="TradingHours"/>: 09:00 - 17:30 CET
+            </span>
           </div>
         </div>
       </div>
@@ -99,18 +105,26 @@ const exchanges = [
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="text-gray-400 text-sm mb-4 md:mb-0">
           © {new Date().getFullYear()}
-          ("BME - Bolsas y Mercados Españoles. All rights reserved.")
+          ("BME - Bolsas y Mercados Españoles. 
+          <Texto client:only="react" props="Allrightsreserved"/>
+          .")
         </div>
         <div class="flex gap-6">
           <a href="#" class="text-gray-400 hover:text-white text-sm"
-            >Privacy Policy</a
+            >
+            <Texto client:only="react" props="PrivacyPolicy"/>  
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white text-sm"
+            >
+            <Texto client:only="react" props="TermsofService"/>
+            </a
           >
           <a href="#" class="text-gray-400 hover:text-white text-sm"
-            >Terms of Service</a
+            >
+            <Texto client:only="react" props="CookiePolicy"/>
+            </a
           >
-          <a href="#" class="text-gray-400 hover:text-white text-sm"
-            >Cookie Policy</a
-          >
+          <LanguageSwitcher client:only="react" />
         </div>
       </div>
     </div>

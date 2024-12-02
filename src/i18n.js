@@ -2,7 +2,9 @@ import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-i18next
+const i18nInstance = i18next.createInstance();
+
+i18nInstance
     .use(initReactI18next)
     .use(LanguageDetector)
     .init({
@@ -12,9 +14,6 @@ i18next
                 translation: {
                     title: "Business Quotes",
                     buttons: {
-                        save: "Save",
-                        cancel: "Cancel",
-                        login: "Login",
                         previous_day: "Previous Day",
                         next_day: "Next Day",
                         previous_month: "Previous Month",
@@ -26,20 +25,21 @@ i18next
                         fecha: "Date",
                         cotizacion: "Quote"
                     },
+                    idioma: "Language",
+                    MadridSpain: "Madrid, Spain",
+                    TradingHours: "Trading Hours",
+                    Allrightsreserved: "All rights reserved",
+                    CookiePolicy: "Cookie Policy",
+                    TermsofService: "Terms of Service",
+                    PrivacyPolicy: "Privacy Policy",
+                    ContactInformation: "Contact Information",
+                    GlobalExchangeNetwork: "Global Exchange Network",
+                    ListadeCompanias: "Listed Companies",
                     participacion: "Company Participation",
                     selected_date: "Selected Date",
                     selected_month: "Selected Month",
-                    loading: "Loading data...",
-                    no_data: "No data to display.",
-                    error: "Error loading data.",
-                    navbar: {
-                        title: "TORONTO STOCK EXCHANGE - TSX VENTURE EXCHANGE"
-                    },
-                    body_indices: { 
-                        title: "Stock Index Quotes" 
-                    }, 
-                    body_empresas: { 
-                        title: "TSX Listed Companies" 
+                    body_indices: {
+                        title: "Stock Index Quotes"
                     },
                 },
             },
@@ -47,9 +47,6 @@ i18next
                 translation: {
                     title: "Cotizaciones de Empresas",
                     buttons: {
-                        save: "Guardar",
-                        cancel: "Cancelar",
-                        login: "Iniciar sesión",
                         previous_day: "Día Anterior",
                         next_day: "Día Siguiente",
                         previous_month: "Mes Anterior",
@@ -61,24 +58,29 @@ i18next
                         fecha: "Fecha",
                         cotizacion: "Cotización"
                     },
+                    idioma: "Idioma",
+                    MadridSpain: "Madrid, España",
+                    TradingHours: "Horarios de operación",
+                    Allrightsreserved: "Todos los derechos reservados",
+                    CookiePolicy: "Política de cookies",
+                    TermsofService: "Términos de servicio",
+                    PrivacyPolicy: "Política de privacidad",
+                    ContactInformation: "Información de contacto",
+                    GlobalExchangeNetwork: "Red de intercambio global",
+                    ListadeCompanias: "Lista de Empresas",
                     participacion: "Participacion de las Empresas",
                     selected_date: "Fecha Seleccionada",
                     selected_month: "Mes Seleccionado",
-                    loading: "Cargando datos...",
-                    no_data: "No hay datos para mostrar.",
-                    error: "Error al cargar los datos.",
-                    navbar: {
-                        title: "BOLSA DE VALORES DE TORONTO - INTERCAMBIO DE EMPRESAS"
+                    body_indices: {
+                        title: "Cotizaciones de los Índices Bursátiles"
                     },
-                    body_indices: { 
-                        title: "Cotizaciones de los Índices Bursátiles" 
-                    }, 
-                    body_empresas: { 
-                        title: "TSX - Empresas Cotizando" 
-                    }
                 },
             },
         },
+        detection: {
+            order: ["querystring", "cookie", "localStorage", "navigator"],
+            caches: ["cookie"],
+        },
     });
 
-export default i18next;
+export default i18nInstance;

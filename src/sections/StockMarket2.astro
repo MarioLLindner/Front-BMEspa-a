@@ -10,7 +10,7 @@ export const Empresas = [
         RefranEmpresa: "Think different",
         image: "/empresas/AppleStockMarquet.jpg",
         logo: "/logos/Apple INC.png",
-        link: "www.apple.com",
+        link: "https://www.apple.com/",
         cantidadAcciones: 0,
         cotizaciones: [],
         info: [
@@ -19,16 +19,16 @@ export const Empresas = [
                 label: "Min",
             },
             {
-                value: 1,
+                value: 0,
                 label: "Max",
             },
             {
-                value: 0.8,
-                Label: "Actual",
+                value: 0,
+                label: "Valor Actual",
             },
             {
-                value: 0.8,
-                Label: "Fluctuacion",
+                value: 0,
+                label: "% de Fluctuacion",
             },
         ],
     },
@@ -47,16 +47,16 @@ export const Empresas = [
                 label: "Min",
             },
             {
-                value: 1,
+                value: 0,
                 label: "Max",
             },
             {
-                value: 0.8,
-                Label: "Actual",
+                value: 0,
+                label: "Valor Actual",
             },
             {
-                value: 0.8,
-                Label: "Fluctuacion",
+                value: 0,
+                label: "% de Fluctuacion",
             },
         ],
     },
@@ -75,16 +75,16 @@ export const Empresas = [
                 label: "Min",
             },
             {
-                value: 1,
+                value: 0,
                 label: "Max",
             },
             {
-                value: 0.8,
-                Label: "Actual",
+                value: 0,
+                label: "Valor Actual",
             },
             {
-                value: 0.8,
-                Label: "Fluctuacion",
+                value: 0,
+                label: "% de Fluctuacion",
             },
         ],
     },
@@ -103,16 +103,16 @@ export const Empresas = [
                 label: "Min",
             },
             {
-                value: 1,
+                value: 0,
                 label: "Max",
             },
             {
-                value: 0.8,
-                Label: "Actual",
+                value: 0,
+                label: "Valor Actual",
             },
             {
-                value: 0.8,
-                Label: "Fluctuacion",
+                value: 0,
+                label: "% de Fluctuacion",
             },
         ],
     },
@@ -131,16 +131,16 @@ export const Empresas = [
                 label: "Min",
             },
             {
-                value: 1,
+                value: 0,
                 label: "Max",
             },
             {
-                value: 0.8,
-                Label: "Actual",
+                value: 0,
+                label: "Valor Actual",
             },
             {
-                value: 0.8,
-                Label: "Fluctuacion",
+                value: 0,
+                label: "% de Fluctuacion",
             },
         ],
     },
@@ -159,16 +159,16 @@ export const Empresas = [
                 label: "Min",
             },
             {
-                value: 1,
+                value: 0,
                 label: "Max",
             },
             {
-                value: 0.8,
-                Label: "Actual",
+                value: 0,
+                label: "Valor Actual",
             },
             {
-                value: 0.8,
-                Label: "Fluctuacion",
+                value: 0,
+                label: "% de Fluctuacion",
             },
         ],
     },
@@ -187,16 +187,16 @@ export const Empresas = [
                 label: "Min",
             },
             {
-                value: 1,
+                value: 0,
                 label: "Max",
             },
             {
-                value: 0.8,
-                Label: "Actual",
+                value: 0,
+                label: "Valor Actual",
             },
             {
-                value: 0.8,
-                Label: "Fluctuacion",
+                value: 0,
+                label: "% de Fluctuacion",
             },
         ],
     },
@@ -242,7 +242,6 @@ const resultados = await Promise.all(fetchPromises);
     </div>
     <div class="flex bg-white z-10 relative flex-col pr-[60px] pl-[60px] border-lime-400">
         <div class="flex items-center justify-center uppercase tracking-tighter text-8xl font-bold">
-            <!-- <a>{t('participacion')}</a> -->
             <Texto client:only="react" props="participacion"/>
         </div>
         <div class="">

@@ -85,10 +85,49 @@ const CandleChartProEmpresas = ({ divID, cotizaciones }) => {
         valueXField: "date",
         tooltip: am5.Tooltip.new(root, {
           pointerOrientation: "horizontal",
-          labelText: "open: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}"
+          labelText: "open: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}",
+          }),
         })
-      })
+      
     );
+
+
+   
+
+// Configuración del fondo del tooltip (ajuste de dimensiones y bordes)
+series.get("tooltip").get("background").setAll({
+  minWidth: 150, // Ancho mínimo
+  minHeight: 120, // Alto mínimo
+  maxWidth: 200, // Ancho máximo
+  fill: am5.color(0x228B22), // Fondo verde (puede ajustarse si lo prefieres)
+  fillOpacity: 0.95,
+  stroke: am5.color(0x000000), // Bordes negros
+  strokeWidth: 1,
+});
+
+// Configuración del tooltip de la serie
+series.get("tooltip").label.setAll({
+  fontSize: 34, // Tamaño equilibrado de fuente
+  fontWeight: "500", // Negrita para mayor claridad
+  fill: am5.color(0xffffff), // Texto blanco
+  textAlign: "left", // Alinear a la izquierda para mayor legibilidad
+  lineHeight: 1.5, // Espaciado entre líneas
+});
+
+// Ajustes adicionales para los tooltips del eje X
+xAxis.get("tooltip").label.setAll({
+  fontSize: 30, // Tamaño de fuente más visible
+  fontWeight: "500",
+  fill: am5.color(0xffffff), // Texto blanco
+  textAlign: "center", // Centrado
+  lineHeight: 1.5, // Espaciado entre líneas
+  background: am5.Rectangle.new(root, {
+    fill: am5.color(0x000000), // Fondo negro
+    fillOpacity: 0.9,
+  }),
+});
+
+    
 
     // Add cursor
     let cursor = chart.set(
