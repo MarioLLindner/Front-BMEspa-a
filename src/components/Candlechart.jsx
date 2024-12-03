@@ -8,6 +8,11 @@ const CandleChartProEmpresas = ({ divID, cotizaciones }) => {
     // Create root element
     let root = am5.Root.new(divID);
 
+    //Ocultar el logo de Amcharts
+    if (root._logo) {
+      root._logo.dispose();
+    }
+
     const myTheme = am5.Theme.new(root);
     myTheme.rule("Grid", ["scrollbar", "minor"]).setAll({
       visible: false
@@ -57,7 +62,7 @@ const CandleChartProEmpresas = ({ divID, cotizaciones }) => {
     );
 
     xAxis.get("renderer").labels.template.setAll({
-      fontSize:30, 
+      fontSize: 30,
     });
 
     let yAxis = chart.yAxes.push(
@@ -68,7 +73,7 @@ const CandleChartProEmpresas = ({ divID, cotizaciones }) => {
     );
 
     yAxis.get("renderer").labels.template.setAll({
-      fontSize:30, 
+      fontSize: 30,
     });
 
 
@@ -86,48 +91,45 @@ const CandleChartProEmpresas = ({ divID, cotizaciones }) => {
         tooltip: am5.Tooltip.new(root, {
           pointerOrientation: "horizontal",
           labelText: "open: {openValueY}\nlow: {lowValueY}\nhigh: {highValueY}\nclose: {valueY}",
-          }),
-        })
-      
+        }),
+      })
+
     );
 
+    // Configuración del fondo del tooltip (ajuste de dimensiones y bordes)
+    series.get("tooltip").get("background").setAll({
+      minWidth: 150, // Ancho mínimo
+      minHeight: 120, // Alto mínimo
+      maxWidth: 200, // Ancho máximo
+      fill: am5.color(0x228B22), // Fondo verde (puede ajustarse si lo prefieres)
+      fillOpacity: 0.95,
+      stroke: am5.color(0x000000), // Bordes negros
+      strokeWidth: 1,
+    });
 
-   
+    // Configuración del tooltip de la serie
+    series.get("tooltip").label.setAll({
+      fontSize: 34, // Tamaño equilibrado de fuente
+      fontWeight: "500", // Negrita para mayor claridad
+      fill: am5.color(0xffffff), // Texto blanco
+      textAlign: "left", // Alinear a la izquierda para mayor legibilidad
+      lineHeight: 1.5, // Espaciado entre líneas
+    });
 
-// Configuración del fondo del tooltip (ajuste de dimensiones y bordes)
-series.get("tooltip").get("background").setAll({
-  minWidth: 150, // Ancho mínimo
-  minHeight: 120, // Alto mínimo
-  maxWidth: 200, // Ancho máximo
-  fill: am5.color(0x228B22), // Fondo verde (puede ajustarse si lo prefieres)
-  fillOpacity: 0.95,
-  stroke: am5.color(0x000000), // Bordes negros
-  strokeWidth: 1,
-});
+    // Ajustes adicionales para los tooltips del eje X
+    xAxis.get("tooltip").label.setAll({
+      fontSize: 30, // Tamaño de fuente más visible
+      fontWeight: "500",
+      fill: am5.color(0xffffff), // Texto blanco
+      textAlign: "center", // Centrado
+      lineHeight: 1.5, // Espaciado entre líneas
+      background: am5.Rectangle.new(root, {
+        fill: am5.color(0x000000), // Fondo negro
+        fillOpacity: 0.9,
+      }),
+    });
 
-// Configuración del tooltip de la serie
-series.get("tooltip").label.setAll({
-  fontSize: 34, // Tamaño equilibrado de fuente
-  fontWeight: "500", // Negrita para mayor claridad
-  fill: am5.color(0xffffff), // Texto blanco
-  textAlign: "left", // Alinear a la izquierda para mayor legibilidad
-  lineHeight: 1.5, // Espaciado entre líneas
-});
 
-// Ajustes adicionales para los tooltips del eje X
-xAxis.get("tooltip").label.setAll({
-  fontSize: 30, // Tamaño de fuente más visible
-  fontWeight: "500",
-  fill: am5.color(0xffffff), // Texto blanco
-  textAlign: "center", // Centrado
-  lineHeight: 1.5, // Espaciado entre líneas
-  background: am5.Rectangle.new(root, {
-    fill: am5.color(0x000000), // Fondo negro
-    fillOpacity: 0.9,
-  }),
-});
-
-    
 
     // Add cursor
     let cursor = chart.set(
@@ -145,10 +147,42 @@ xAxis.get("tooltip").label.setAll({
     });
     chart.set("scrollbarX", scrollbar);
 
-    
+
+    let sbxAxis = scrollbar.chart.xAxes.push(
+      am5xy.DateAxis.new(root, {
+        groupData: true,
+        groupIntervals: [{ timeUnit: "week", count: 1 }],
+        baseInterval: { timeUnit: "day", count: 1 },
+        renderer: am5xy.AxisRendererX.new(root, {
+          opposite: false,
+          strokeOpacity: 0,
+          minorGridEnabled: true,
+        }),
+      })
+    );
+
+    let sbyAxis = scrollbar.chart.yAxes.push(
+      am5xy.ValueAxis.new(root, {
+        renderer: am5xy.AxisRendererY.new(root, {}),
+      })
+    );
+
+    let sbseries = scrollbar.chart.series.push(
+      am5xy.LineSeries.new(root, {
+        xAxis: sbxAxis,
+        yAxis: sbyAxis,
+        valueYField: "value",
+        valueXField: "date",
+      })
+    );
+
+        yAxis.get("renderer").labels.template.setAll({
+      fontSize: 30,
+    });
 
     // Add data to the series
     series.data.setAll(chartData);
+    sbseries.data.setAll(chartData);
 
     // Make stuff animate on load
     series.appear(1000);

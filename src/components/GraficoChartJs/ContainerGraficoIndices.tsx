@@ -107,7 +107,7 @@ const BodyIndices: React.FC<BodyIndicesProps> = ({ ArrayIndices }) => {
 
     return (
         <>
-        <div className="max-w-[95%] mx-auto p-5 bg-white rounded-lg shadow-md">
+        <div className="max-w-[95%] mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
         <h1 className="text-center font-bold text-2xl mb-5">{t('body_indices.title')}</h1>
             <GraficoSelector tipoGrafico={tipoGrafico} setTipoGrafico={setTipoGrafico} />
             <div className="flex flex-wrap gap-2 mt-5">

@@ -19,6 +19,11 @@ interface Empresa {
     // Set themes
     root.setThemes([am5themes_Animated.new(root)]);
 
+        //Ocultar el logo de Amcharts
+        if (root._logo) {
+          root._logo.dispose();
+        }
+
     // Create chart
     const chart = root.container.children.push(
       am5percent.PieChart.new(root, {

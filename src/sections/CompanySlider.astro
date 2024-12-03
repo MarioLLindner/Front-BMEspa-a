@@ -151,7 +151,7 @@ const resultados2 = await Promise.all(fetchPromises2)
 
 <section class="border-b-[60px] border-lime-400 ">
 
-    <div id="indices-slider" class="glide">
+    <div id="indices-slider" class="glide border-b-[30px] border-lime-400">
         <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides bg-lime-400">
                 {
@@ -171,7 +171,7 @@ const resultados2 = await Promise.all(fetchPromises2)
         </div>
     </div>
     <article class="aspect-[23/9] bg-white">
-        <BodyIndices client:only="react" ArrayIndices={IndiceBursatil}/>
+        <BodyIndices client:load ArrayIndices={IndiceBursatil}/>
     </article>
 </section>
 
@@ -181,7 +181,7 @@ const resultados2 = await Promise.all(fetchPromises2)
     }
 
     .glide__slide--active {
-        @apply bg-[#171717];
+        @apply bg-lime-600;
     }
 </style>
 

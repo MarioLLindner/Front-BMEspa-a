@@ -1,50 +1,52 @@
 ---
 import Logo from "@components/Logo.astro";
+import LanguageSwitcher from "./lenguageSwitcher/lenguageSwitcher";
 ---
-
 
 <header
     id="landing-header"
     class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center h-16 px-8">
     <a href="/">
-        <Logo/>
+        <Logo />
     </a>
-    <div>
-        <h1 class="uppeercase text-current">Bolsa de valores BME</h1>
+    <div class="flex items-center gap-4">
+        <h1 class="uppercase text-current">Bolsa de valores BME</h1>
+        <LanguageSwitcher client:only="react" />
     </div>
 </header>
 
 <style>
     header {
-        svg, h1 {
-            color:white;
-            transition: color 0.7s ease-in-out;
+        svg, h1, .text-current, .border-current {
+            color: white;
+            border-color: white;
+            transition: color 0.7s ease-in-out, border-color 0.7s ease-in-out;
         }
         &.light {
-            svg, h1 {
-                color: black
+            svg, h1, .text-current, .border-current {
+                color: black;
+                border-color: black;
             }
         }
     }
 </style>
 
 <script>
-
-    const $header = document.querySelector("#landing-header") as HTMLElement
-    const $$sectionElements = document.querySelectorAll("section[data-header-theme='dark']")
+    const $header = document.querySelector("#landing-header") as HTMLElement;
+    const $$sectionElements = document.querySelectorAll("section[data-header-theme='dark']");
 
     const intersectionOptions = {
-        root: null, //elemento <body>
+        root: null,
         rootMargin: "0px",
-        threshold: 0.1    
-    }
+        threshold: 0.1,
+    };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-            const lightMode = !entry.isIntersecting
-            $header.classList.toggle("light", lightMode)
-        })
-    }, intersectionOptions)
+            const lightMode = !entry.isIntersecting;
+            $header.classList.toggle("light", lightMode);
+        });
+    }, intersectionOptions);
 
-    $$sectionElements.forEach((section => observer.observe(section)))
+    $$sectionElements.forEach((section) => observer.observe(section));
 </script>
