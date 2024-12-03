@@ -7,7 +7,7 @@ export const ListaEmpresas = ({ empresas }) => {
     const [EmpresaCotizaciones, setEmpresaCotizaciones] = useState(null)
 
     const HandleEmpresaClick = async empresa => {
-        const response = await fetch(`http://localhost:8080/Cotizaciones/filtrarCotdemiDB/${empresa?.Abreviacion}`)
+        const response = await fetch(`http://app:8080/Cotizaciones/filtrarCotdemiDB/${empresa?.Abreviacion}`)
         setEmpresaCotizaciones(await response.json())
         setEmpresaActual(empresa)
         const divPadre = document.querySelector("#company-container");

@@ -202,9 +202,9 @@ export const Empresas = [
     },
 ];
 
-const CodEmpresasjson = await fetch(
-    "http://localhost:8080/cotizaciones/BuscarMisEmpresas",
-);
+//const url = "http://localhost:8080/";
+
+const CodEmpresasjson = await fetch("http://app:8080/cotizaciones/BuscarMisEmpresas",);
 const CodEmpresas = await CodEmpresasjson.json();
 Empresas.forEach((empresa, index) => {
     if (CodEmpresas[index]) {
@@ -215,11 +215,11 @@ Empresas.forEach((empresa, index) => {
 const fetchPromises = Empresas.map(async (empresa) => {
     if (empresa.Abreviacion) {
         const response = await fetch(
-            `http://localhost:8080/empresas/${empresa?.Abreviacion}`,
+            `http://app:8080/empresas/${empresa?.Abreviacion}`,
         );
         const data = await response.json();
         if (data.codempresa === empresa.Abreviacion) {
-            empresa.Nombre = data.empresaNombre; // Actualiza el nombre
+            empresa.Nombre = data.empresaNombre; // Actualiza el nombreF
             empresa.cantidadAcciones = data.cantidadAcciones;
         }
        /*  console.log(Empresas); */
@@ -244,7 +244,7 @@ const resultados = await Promise.all(fetchPromises);
         <div class="flex items-center justify-center uppercase tracking-tighter text-8xl font-bold">
             <Texto client:only="react" props="participacion"/>
         </div>
-        <div class="">
+        <div class="max-h-[700px] overflow-y-auto">
             <ParticipacionDeEmpresas client:only="react" empresas={Empresas}/>
         </div>
     </div>

@@ -22,7 +22,6 @@ export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
         valorMinimo > 0
             ? ((valorMaximo - valorMinimo) / valorMinimo) * 100
             : 0;
-    console.log("Porcentaje de Fluctuación:", porcentajeFluctuacion.toFixed(2) + "%");
 
     
     const fluctuacionFiltrada = porcentajeFluctuacion.toFixed(2)

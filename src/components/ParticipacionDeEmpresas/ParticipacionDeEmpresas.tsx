@@ -5,24 +5,25 @@ import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 
 
 interface Empresa {
-    Nombre: string;
-    cantidadAcciones: string;
-  }
-  
+  Nombre: string;
+  cantidadAcciones: string;
+}
 
-  const PieChartComponent = ({ empresas }:any) => {
-    useLayoutEffect (() => {
-        console.log("Empresas",empresas)
+
+const PieChartComponent = ({ empresas }: any) => {
+  useLayoutEffect(() => {
+    console.log("Empresas", empresas)
     // Create root element
     const root = am5.Root.new("chartdiv2");
 
     // Set themes
     root.setThemes([am5themes_Animated.new(root)]);
 
-        //Ocultar el logo de Amcharts
-        if (root._logo) {
-          root._logo.dispose();
-        }
+    //Ocultar el logo de Amcharts
+    if (root._logo) {
+      root._logo.dispose();
+    }
+
 
     // Create chart
     const chart = root.container.children.push(
@@ -39,21 +40,31 @@ interface Empresa {
         name: "Series",
         valueField: "sales",
         categoryField: "country",
+        alignLabels: false,
       })
     );
 
+
     // Map empresas data to match chart's expected format
-    const chartData = empresas.map((empresa:any) => ({
-        country: empresa.Nombre,
-        sales: parseFloat(empresa.cantidadAcciones), // Convertir cantidadAcciones a número
-      }));
-  
-      // Set data
-      series.data.setAll(chartData);
+    const chartData = empresas.map((empresa: any) => ({
+      country: empresa.Nombre,
+      sales: parseFloat(empresa.cantidadAcciones), // Convertir cantidadAcciones a número
+    }));
+
+
+    // Set data
+    series.data.setAll(chartData);
 
     // Disable labels and ticks
-    series.labels.template.set("visible", false);
+
     series.ticks.template.set("visible", false);
+
+    series.labels.template.setAll({
+      text: "{category}",
+      textType: "circular",
+      inside: false,
+      radius: 20
+    });
 
     // Adding gradients
     series.slices.template.set("strokeOpacity", 0);
@@ -69,6 +80,7 @@ interface Empresa {
         ],
       })
     );
+
 
     // Create legend
     const legend = chart.children.push(
@@ -99,7 +111,7 @@ interface Empresa {
     };
   }, []);
 
-  return <div id="chartdiv2" style={{ width: "100%", height: "500px" }} />;
+  return <div id="chartdiv2" style={{ width: "100%", height: "700px" }} />;
 };
 
 export default PieChartComponent;

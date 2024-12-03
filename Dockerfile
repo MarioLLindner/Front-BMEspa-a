@@ -12,10 +12,16 @@ RUN npm install
 # copio todo lo del directorio en el que estoy al directorio actual del docker
 COPY . .
 
+ENV NODE_OPTIONS=--max_old_space_size=4096
+
 #buildeo la aplicacion que copie
 RUN npm run build
 
+ENV HOST=0.0.0.0
+ENV PORT=4321
 EXPOSE 4321
 
 #comando para iniciar aplicación
-CMD ["npm", "run", "preview"]
+#CMD ["npm", "run", "preview"]
+
+CMD node ./dist/server/entry.mjs

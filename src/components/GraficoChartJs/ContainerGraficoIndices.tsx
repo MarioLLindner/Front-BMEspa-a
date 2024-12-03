@@ -76,7 +76,7 @@ const BodyIndices: React.FC<BodyIndicesProps> = ({ ArrayIndices }) => {
             data: agrupadoPorIndice[indice].dataValues,
             labels: agrupadoPorIndice[indice].labels,
             borderColor: colorMap[indice],
-            backgroundColor: `${colorMap[indice]}33`,
+            backgroundColor: `${colorMap[indice]}`,
             fill: true,
         }));
 
@@ -103,56 +103,54 @@ const BodyIndices: React.FC<BodyIndicesProps> = ({ ArrayIndices }) => {
     };
 
     const datosGrafico = obtenerDatosGrafico();
-    console.log("DATOS GRAFICOS", datosGrafico)
 
     return (
         <>
-        <div className="max-w-[95%] mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
-        <h1 className="text-center font-bold text-2xl mb-5">{t('body_indices.title')}</h1>
-            <GraficoSelector tipoGrafico={tipoGrafico} setTipoGrafico={setTipoGrafico} />
-            <div className="flex flex-wrap gap-2 mt-5">
-                {ArrayIndices.map(indice => (
-                    <button
-                    key={indice.Abreviacion}
-                    onClick={() => toggleIndice(indice.Abreviacion)}
-                    className={`py-2 px-4 text-sm rounded-lg transition transform border-2 ${
-                      selectedIndices.includes(indice.Abreviacion)
-                        ? `bg-blue-500 text-white border-${colorMap[indice.Abreviacion]}`
-                        : 'bg-gray-300 text-gray-700'
-                    }`}
-                  >
-                    {indice.Abreviacion}
-                  </button>
-                ))}
+            <div className="max-w-[95%] flex flex-col mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
+                <h1 className="text-center font-bold uppercase text-7xl mb-5">{t('body_indices.title')}</h1>
+                <GraficoSelector tipoGrafico={tipoGrafico} setTipoGrafico={setTipoGrafico} />
+                <div className="flex flex-wrap gap-2 mt-5">
+                    {ArrayIndices.map(indice => (
+                        <button
+                            key={indice.Abreviacion}
+                            onClick={() => toggleIndice(indice.Abreviacion)}
+                            className={`py-2 px-4 text-sm rounded-lg transition transform border-2 ${selectedIndices.includes(indice.Abreviacion)
+                                    ? `bg-lime-500 text-white border-${colorMap[indice.Abreviacion]}`
+                                    : 'bg-gray-300 text-gray-700'
+                                }`}
+                        >
+                            {indice.Abreviacion}
+                        </button>
+                    ))}
+                </div>
+                {tipoGrafico === 'diario' && (
+                    <div className="flex gap-2 mt-3">
+                        <button className="bg-lime-500 text-white rounded-lg py-2 px-4 transition hover:bg-lime-700" onClick={() => cambiarDia(-1)}>
+                            {t('buttons.previous_day')}
+                        </button>
+                        <button className="bg-lime-500 text-white rounded-lg py-2 px-4 transition hover:bg-lime-700" onClick={() => cambiarDia(1)}>
+                            {t('buttons.next_day')}
+                        </button>
+                        <p>{t('selected_date')}: {fechaSeleccionada}</p>
+                    </div>
+                )}
+                {tipoGrafico === 'mensual' && (
+                    <div className="flex gap-2 mt-3">
+                        <button className="bg-lime-500 text-white rounded-lg py-2 px-4 transition hover:bg-lime-700" onClick={() => cambiarMes(-1)}>
+                            {t('buttons.previous_month')}
+                        </button>
+                        <button className="bg-lime-500 text-white rounded-lg py-2 px-4 transition hover:bg-lime-700" onClick={() => cambiarMes(1)}>
+                            {t('buttons.next_month')}
+                        </button>
+                        <p>{t('selected_month')}: {mesSeleccionado}</p>
+                    </div>
+                )}
+                {datosGrafico.length > 0 ? (
+                    <GraficoCotizacionesIndices datos={datosGrafico} tipoGrafico={tipoGrafico} />
+                ) : (
+                    !cargando && <p className="error-message font-bold">{t('no_data')}</p>
+                )}
             </div>
-            {tipoGrafico === 'diario' && (
-                <div className="flex gap-2 mt-3">
-                    <button className="bg-blue-500 text-white rounded-lg py-2 px-4 transition hover:bg-blue-700" onClick={() => cambiarDia(-1)}>
-                        {t('buttons.previous_day')}
-                    </button>
-                    <button className="bg-blue-500 text-white rounded-lg py-2 px-4 transition hover:bg-blue-700" onClick={() => cambiarDia(1)}>
-                        {t('buttons.next_day')}
-                    </button>
-                    <p>{t('selected_date')}: {fechaSeleccionada}</p>
-                </div>
-            )}
-            {tipoGrafico === 'mensual' && (
-                <div className="flex gap-2 mt-3">
-                    <button className="bg-blue-500 text-white rounded-lg py-2 px-4 transition hover:bg-blue-700" onClick={() => cambiarMes(-1)}>
-                        {t('buttons.previous_month')}
-                    </button>
-                    <button className="bg-blue-500 text-white rounded-lg py-2 px-4 transition hover:bg-blue-700" onClick={() => cambiarMes(1)}>
-                        {t('buttons.next_month')}
-                    </button>
-                    <p>{t('selected_month')}: {mesSeleccionado}</p>
-                </div>
-            )}
-            {datosGrafico.length > 0 ? (
-                <GraficoCotizacionesIndices datos={datosGrafico} tipoGrafico={tipoGrafico} />
-            ) : (
-                !cargando && <p className="error-message">{t('no_data')}</p>
-            )}
-        </div>
         </>
     );
 };

@@ -107,7 +107,7 @@ export const IndiceBursatil = [
     }
 ]
 
-const CodIndicesjson = await fetch("http://localhost:8080/cotizacionIndice/BuscarMisIndices")
+const CodIndicesjson = await fetch("http://app:8080/cotizacionIndice/BuscarMisIndices")
 const CodIndices = await CodIndicesjson.json()
 
 IndiceBursatil.forEach((Indice, index) => {
@@ -118,7 +118,7 @@ IndiceBursatil.forEach((Indice, index) => {
 
 const fetchPromises = IndiceBursatil.map(async (indice) => {
     if (indice.Abreviacion) {
-        const response = await fetch(`http://localhost:8080/indices/Detalles/${indice.Abreviacion}`);
+        const response = await fetch(`http://app:8080/indices/Detalles/${indice.Abreviacion}`);
         const data = await response.json();
         if (data.codigoIndice === indice.Abreviacion) {
             indice.Nombre = data.nombreIndice;
@@ -134,7 +134,7 @@ const resultados = await Promise.all(fetchPromises)
 
 const fetchPromises2 = IndiceBursatil.map(async (indice) => {
     if (indice.Abreviacion) {
-        const response = await fetch(`http://localhost:8080/cotizacionIndice/filtrarCotdemiDB/${indice?.Abreviacion}`);
+        const response = await fetch(`http://app:8080/cotizacionIndice/filtrarCotdemiDB/${indice?.Abreviacion}`);
         const data = await response.json();
             indice.valor = data;
         return data; // Puedes almacenar los datos si los necesitas

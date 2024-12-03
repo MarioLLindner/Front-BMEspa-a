@@ -13,8 +13,8 @@ const GraficoSelector: React.FC<GraficoSelectorProps> = ({ tipoGrafico, setTipoG
     <div className="flex justify-center gap-3 mb-5">
       <button
         className={`py-2 px-4 rounded-lg text-sm font-semibold transition ${tipoGrafico === 'diario'
-            ? 'bg-blue-500 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-lime-500 text-white'
+            : 'bg-gray-200 text-gray-700 hover:bg-lime-700'
           }`}
         onClick={() => setTipoGrafico('diario')}
       >
@@ -23,8 +23,8 @@ const GraficoSelector: React.FC<GraficoSelectorProps> = ({ tipoGrafico, setTipoG
       <button
         className={`py-2 px-4 rounded-lg text-sm font-semibold transition ${
           tipoGrafico === 'mensual'
-            ? 'bg-blue-500 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-lime-500 text-white'
+            : 'bg-gray-200 text-gray-700 hover:bg-lime-700'
         }`}
         onClick={() => setTipoGrafico('mensual')}
       >
@@ -33,8 +33,8 @@ const GraficoSelector: React.FC<GraficoSelectorProps> = ({ tipoGrafico, setTipoG
       <button
         className={`py-2 px-4 rounded-lg text-sm font-semibold transition ${
           tipoGrafico === 'anual'
-            ? 'bg-blue-500 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-lime-500 text-white'
+            : 'bg-gray-200 text-gray-700 hover:bg-lime-700'
         }`}
         onClick={() => setTipoGrafico('anual')}
       >
