@@ -119,7 +119,7 @@ const PieChartComponent = ({ empresas }: any) => {
     };
   }, []);
 
-  return <div id="chartdiv2" style={{ width: "100%", height: "650px" }} />;
+  return <div id="chartdiv2" className="mb-12 mt-6" style={{ width: "100%", height: "650px" }} />;
 };
 
 export default PieChartComponent;
