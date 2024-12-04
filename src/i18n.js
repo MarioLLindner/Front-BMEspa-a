@@ -38,6 +38,8 @@ i18nInstance
                     participacion: "Company Participation",
                     selected_date: "Selected Date",
                     selected_month: "Selected Month",
+                    no_data:"Select an index to see its quotes",
+                    empresas:"Listed Companies",
                     body_indices: {
                         title: "Stock Index Quotes"
                     },
@@ -71,8 +73,10 @@ i18nInstance
                     participacion: "Participacion de las Empresas",
                     selected_date: "Fecha Seleccionada",
                     selected_month: "Mes Seleccionado",
+                    no_data:"Seleccione un indice para ver sus cotizaciones",
+                    empresas:"Lista de Empresas",
                     body_indices: {
-                        title: "Cotizaciones de los Índices Bursátiles"
+                        title: "Cotizaciones de Índices Bursátiles"
                     },
                 },
             },

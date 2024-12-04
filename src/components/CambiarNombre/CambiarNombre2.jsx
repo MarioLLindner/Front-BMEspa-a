@@ -14,18 +14,28 @@ export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
             .map(c => parseFloat(c.cotizacion))
         : [];
 
+
+        let porcentajeFluctuacion = null;
+        if (valores.length >= 2) {
+            const valorActual = valores[valores.length - 1];
+            const valorAnterior = valores[valores.length - 2];
+    
+            if (valorAnterior === 0) {
+                porcentajeFluctuacion = "Indefinido (valor anterior = 0)"; // Manejo seguro de división por cero
+            } else {
+                porcentajeFluctuacion = ((valorActual - valorAnterior) / valorAnterior) * 100;
+            }
+        } else {
+            porcentajeFluctuacion = "Datos insuficientes"; // Menos de dos cotizaciones
+        }
+    
+        console.log("Porcentaje de Fluctuación:", porcentajeFluctuacion);    
+
     // Calcular valores requeridos si existen datos
     const valorMaximo = valores.length > 0 ? Math.max(...valores) : 0;
     const valorMinimo = valores.length > 0 ? Math.min(...valores) : 0;
     const ultimoValor = valores.length > 0 ? valores[valores.length - 1] : 0;
-    const porcentajeFluctuacion =
-        valorMinimo > 0
-            ? ((valorMaximo - valorMinimo) / valorMinimo) * 100
-            : 0;
-    console.log("Porcentaje de Fluctuación:", porcentajeFluctuacion.toFixed(2) + "%");
-
     
-    const fluctuacionFiltrada = porcentajeFluctuacion.toFixed(2)
 
     return (
 
@@ -52,8 +62,14 @@ export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
                     </h2>
                 </header>
                 <footer
-                    className="flex flex-col mt-10 bg-lime-400 justify-center items-center py-12"
+                    className="flex flex-col mt-5 bg-lime-400 justify-center items-center py-12"
                 >
+                    <h1 className="text-4xl font-bold uppercase">
+                        {Empresa?.Nombre}
+                    </h1>
+                    <h2 className="text-1xl font-bold uppercase">
+                        {Empresa?.RefranEmpresa}
+                    </h2>
                     <div className="p-2">
                         <div className="grid grid-cols-4 gap-16 text-center">
                             <CompanyDetailsInfoReact label={Empresa?.info[1].label} value={valorMaximo} />
@@ -63,16 +79,21 @@ export const CambiarNombre = ({ Empresa, onClose, cotizaciones }) => {
                                 label={
                                     <>
                                         % de Fluctuación
-                                        {porcentajeFluctuacion !== 0 && (
+                                        {typeof porcentajeFluctuacion === "number" && (
                                             <span
-                                                className={`ml-2 font-bold ${porcentajeFluctuacion > 0 ? "text-red-500" : "text-green-500"
-                                                    }`}
+                                                className={`ml-2 font-bold ${porcentajeFluctuacion > 0 ? "text-green-500" : "text-red-500"}`}
                                             >
-                                                {porcentajeFluctuacion > 0 ? "▼" : "▲"}
+                                                {porcentajeFluctuacion > 0 ? "▲" : "▼"}
                                             </span>
                                         )}
                                     </>
-                                } value={fluctuacionFiltrada} />
+                                }
+                                value={
+                                    typeof porcentajeFluctuacion === "number"
+                                        ? `${porcentajeFluctuacion.toFixed(2)}%`
+                                        : porcentajeFluctuacion
+                                }
+                            />
                         </div>
                     </div>
                     <a

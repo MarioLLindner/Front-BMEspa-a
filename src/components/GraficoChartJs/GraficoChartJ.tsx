@@ -6,24 +6,24 @@ Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Too
 
 interface GraficoProps {
   datos: Array<{
-    label: string; // Nombre del índice
-    data: number[]; // Valores de cotización
-    labels: string[]; // Etiquetas (fechas o horas)
-    borderColor: string; // Color de la línea
-    backgroundColor: string; // Color del fondo
-    fill: boolean; // Rellenar área debajo de la línea
+    label: string; 
+    data: number[]; 
+    labels: string[]; 
+    borderColor: string; 
+    backgroundColor: string; 
+    fill: boolean;
   }>;
   tipoGrafico: 'diario' | 'mensual' | 'anual';
 }
 
 const GraficoCotizacionesIndices: React.FC<GraficoProps> = ({ datos, tipoGrafico }) => {
   const data = {
-    labels: datos[0]?.labels || [], // Usamos las etiquetas del primer índice
+    labels: datos[0]?.labels || [], 
     datasets: datos.map(dataset => ({
       label: dataset.label,
       data: dataset.data,
-      borderColor: dataset.borderColor, // Usar el color de línea personalizado
-      backgroundColor: dataset.backgroundColor, // Usar el color de fondo personalizado
+      borderColor: dataset.borderColor, 
+      backgroundColor: dataset.backgroundColor,
       fill: dataset.fill,
     })),
   };
@@ -52,7 +52,7 @@ const GraficoCotizacionesIndices: React.FC<GraficoProps> = ({ datos, tipoGrafico
   };
 
   return (
-    <div className="w-full p-5 bg-white rounded-lg shadow-md mt-5 overflow-x-auto">
+    <div className="max-w-[85%] w-[1700px] h-[600px] flex justify-center mx-auto p-5 bg-white rounded-lg shadow-md mt-5 overflow-x-auto">
       <Line data={data} options={options} />
     </div>
   );

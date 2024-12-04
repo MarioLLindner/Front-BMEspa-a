@@ -7,15 +7,21 @@ export const IndiceBursatil = [
     {
         Nombre: "",
         Abreviacion: "",
-        logo: "logos/XU100.png",
+        logo: "logos/ASX.png",
         valor: []
     },
     {
         Nombre: "",
         Abreviacion: "",
-        logo: "logos/BME.png",
+        logo: "logos/XU100.png",
         valor: []
     },{
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/BME.png",
+        valor: []
+    },
+    {
         Nombre: "",
         Abreviacion: "",
         logo: "logos/Oslo.png",
@@ -36,6 +42,18 @@ export const IndiceBursatil = [
     {
         Nombre: "",
         Abreviacion: "",
+        logo: "logos/S&PMerval.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Londres.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
         logo: "logos/Moex.png",
         valor: []
     },
@@ -43,6 +61,24 @@ export const IndiceBursatil = [
         Nombre: "",
         Abreviacion: "",
         logo: "logos/Euronext.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Nasdaq.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Paris.png",
+        valor: []
+    },
+    {
+        Nombre: "",
+        Abreviacion: "",
+        logo: "logos/Shangai.png",
         valor: []
     },
     {
@@ -55,54 +91,6 @@ export const IndiceBursatil = [
         Nombre: "",
         Abreviacion: "",
         logo: "logos/BolsadeToronto.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/Londres.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/Euronext.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/Paris.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/FrancFort.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/ASX.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/BolsaItaliana.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/Bovespa.png",
-        valor: []
-    },
-    {
-        Nombre: "",
-        Abreviacion: "",
-        logo: "logos/Moex.png",
         valor: []
     }
 ]
@@ -187,6 +175,7 @@ const resultados2 = await Promise.all(fetchPromises2)
 
 <script>
     import Glide from "@glidejs/glide";
+    import { Autoplay } from '@glidejs/glide/dist/glide.modular.esm'
 
     const $slider = document.querySelector("#indices-slider");
 
@@ -194,9 +183,10 @@ const resultados2 = await Promise.all(fetchPromises2)
         type: "carousel",
         gap: 0,
         focusAt: "center",
-        startAt: 1,
+        startAt: 2,
         perView: 12,
-    }).mount();
+        autoplay: 3000,
+    }).mount({Autoplay});
 
     $slider?.addEventListener("click", (e) => {
         const clickedElement = e.target as HTMLElement;

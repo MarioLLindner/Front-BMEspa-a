@@ -9,7 +9,6 @@ export const Empresas = [
         Abreviacion: "",
         RefranEmpresa: "Think different",
         image: "/empresas/AppleStockMarquet.jpg",
-        logo: "/logos/Apple INC.png",
         link: "https://www.apple.com/",
         cantidadAcciones: 0,
         cotizaciones: [],
@@ -37,7 +36,6 @@ export const Empresas = [
         Abreviacion: "",
         RefranEmpresa: "Working toward a stronger future.",
         image: "/empresas/JPMorganImage.jpg",
-        logo: "/empresas/JPMorganImage.jpg",
         link: "https://www.jpmorgan.com/global", 
         cantidadAcciones: 0,
         cotizaciones: [],
@@ -64,8 +62,7 @@ export const Empresas = [
         Nombre: "",
         Abreviacion: "",
         RefranEmpresa: "Taste the Feeling",
-        image: "/empresas/CocaColaImage.jpg",
-        logo: "/empresas/CocaColaLogo2.png",
+        image: "/empresas/CocaColaImage2.jpg",
         link: "https://www.coca-cola.com", 
         cantidadAcciones: 0,
         cotizaciones: [],
@@ -93,7 +90,6 @@ export const Empresas = [
         Abreviacion: "",
         RefranEmpresa: "The way it's meant to be played",
         image: "/empresas/NVIDIAImage3.jpg",
-        logo: "/empresas/NVIDIAImage.jpg",
         link: "https://www.nvidia.com",
         cantidadAcciones: 0,
         cotizaciones: [],
@@ -121,7 +117,6 @@ export const Empresas = [
         Abreviacion: "",
         RefranEmpresa: "Doing now what patients need next.",
         image: "/empresas/RocheHoldingImage.webp",
-        logo: "/empresas/RocheHoldingImage.webp",
         link: "https://www.roche.com",
         cantidadAcciones: 0,
         cotizaciones: [],
@@ -148,8 +143,7 @@ export const Empresas = [
         Nombre: "",
         Abreviacion: "",
         RefranEmpresa: "Juntos, todo es posible",
-        image: "/empresas/ShellplcImage.webp",
-        logo: "/empresas/ShellplcLogo.png",
+        image: "/empresas/shell.jpg",
         link: "https://www.shell.com.ar/",
         cantidadAcciones: 0,
         cotizaciones: [],
@@ -177,7 +171,6 @@ export const Empresas = [
         Abreviacion: "",
         RefranEmpresa: "The future is sustainable",
         image: "/empresas/TeslaStockMarquet.jpg",
-        logo: "/empresas/Tesla INC.jpg",
         link: "https://www.tesla.com",
         cantidadAcciones: 0,
         cotizaciones: [],
@@ -202,9 +195,9 @@ export const Empresas = [
     },
 ];
 
-const CodEmpresasjson = await fetch(
-    "http://localhost:8080/cotizaciones/BuscarMisEmpresas",
-);
+//const url = "http://localhost:8080/";
+
+const CodEmpresasjson = await fetch("http://localhost:8080/cotizaciones/BuscarMisEmpresas",);
 const CodEmpresas = await CodEmpresasjson.json();
 Empresas.forEach((empresa, index) => {
     if (CodEmpresas[index]) {
@@ -219,7 +212,7 @@ const fetchPromises = Empresas.map(async (empresa) => {
         );
         const data = await response.json();
         if (data.codempresa === empresa.Abreviacion) {
-            empresa.Nombre = data.empresaNombre; // Actualiza el nombre
+            empresa.Nombre = data.empresaNombre; // Actualiza el nombreF
             empresa.cantidadAcciones = data.cantidadAcciones;
         }
        /*  console.log(Empresas); */
@@ -236,7 +229,6 @@ const resultados = await Promise.all(fetchPromises);
 ---
 
 <section  class="border-b-[30px] border-lime-400 border-t-[60px]">
-
     <div id="company-container" class="flex bg-white z-10 relative border-b-[60px] border-lime-400">
         <ListaEmpresas client:only="react" empresas={Empresas} />
     </div>
@@ -244,7 +236,7 @@ const resultados = await Promise.all(fetchPromises);
         <div class="flex items-center justify-center uppercase tracking-tighter text-8xl font-bold">
             <Texto client:only="react" props="participacion"/>
         </div>
-        <div class="">
+        <div class="max-h-[700px] overflow-y-auto">
             <ParticipacionDeEmpresas client:only="react" empresas={Empresas}/>
         </div>
     </div>
